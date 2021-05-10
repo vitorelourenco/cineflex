@@ -1,0 +1,16 @@
+* {
+  box-sizing: border-box;
+	color: inherit;
+}
+
+a {
+	text-decoration: none;
+}
+
+strong {
+  font-weight: bold;
+}
+
+.d-none{
+  display: none;
+}
