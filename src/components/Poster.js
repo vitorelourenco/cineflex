@@ -1,11 +1,14 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export default function Poster(props){
-  const { posterURL, title} = props;
+  const { posterURL, title , id} = props;
   return (
       <PosterWrapper>
         <PosterFigure>
-          <PosterImage src={posterURL} alt={title} />
+          <Link to={`/sessoes/${id}`}>
+            <PosterImage src={posterURL} alt={title} />
+          </Link>
         </PosterFigure>
       </PosterWrapper>
   );
@@ -30,7 +33,9 @@ const PosterImage = styled.img.attrs(props=>({
   alt:props.alt || "",
 }))`
   position: absolute;
-  width: 94%;
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+  object-fit: cover;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

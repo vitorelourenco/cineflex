@@ -1,6 +1,8 @@
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Home from './Home';
 import Header from './Header';
+import SessionSelection from './SessionSelection';
+import SeatSelection from './SeatSelection';
 
 export default function App(){
   return (
@@ -9,6 +11,12 @@ export default function App(){
       <Switch>
         <Route exact path="/">
           <Home />
+        </Route>
+        <Route exact path="/sessoes/:idFilme">
+          <SessionSelection />
+        </Route>
+        <Route exact path="/:movieId/:sessionId">
+          <SeatSelection />
         </Route>
       </Switch>
     </Router>

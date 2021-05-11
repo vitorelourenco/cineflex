@@ -3,6 +3,8 @@ import Instruction from './Instruction';
 import MainWrapper from './MainWrapper';
 import Day from './Day';
 
+const days = [1,2,3];
+
 export default function SessionSelection(){
   return (
     <MainWrapper>
@@ -17,4 +19,4 @@ export default function SessionSelection(){
 const ShowTimes = styled.ul`
   list-style: none;
 
-`
+`;

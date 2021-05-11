@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import Poster from './Poster';
 import MainWrapper from './MainWrapper';
 import Instruction from './Instruction';
@@ -26,7 +25,7 @@ export default function Home(){
     <MainWrapper>
       <Instruction>Selecione o filme</Instruction>
       <Catalog>
-        {posters.map(({posterURL, title, id}) => <Poster key={id} posterURL={posterURL} title={title} />)}
+        {posters.map(({posterURL, title, id}) => <Poster key={id} id={id} posterURL={posterURL} title={title} />)}
       </Catalog>
     </MainWrapper>
     </>
