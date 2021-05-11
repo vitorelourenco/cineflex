@@ -7,7 +7,7 @@ export default function Day({day}){
   return (
   <SessionWrapper>
     <SessionHeader>{weekday} - {date}</SessionHeader>
-    <SessionUL>{showtimes.map(({name, id})=><Time key={id} name={name}/>)}</SessionUL>
+    <SessionUL>{showtimes.map(({name, id})=><Time key={id} id={id} name={name}/>)}</SessionUL>
   </SessionWrapper>
   );
 }
@@ -30,14 +30,15 @@ const SessionUL = styled.ul`
 
 const SessionLI = styled.li`
   width: 20%;
-  max-width: 200px;
+  max-width: 140px;
+  min-width: 60px;
+
 `;
 
-function Time({name}){
-  console.log(name);
+function Time({name,id}){
   return (
     <SessionLI>
-      <Link className="d-block w-100" to="/">
+      <Link className="d-block w-100" to={`/assentos/${id}`}>
         <NextButton>{name}</NextButton>
       </Link>
     </SessionLI>
