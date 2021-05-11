@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Theater from './Theater';
 import SeatLabels  from './SeatLabels';
 import { Link } from 'react-router-dom';
+import MainWrapper from './MainWrapper';
 
 const seats = [
   {text: "99", status: "taken"},
@@ -29,22 +30,12 @@ export default function SeatSelection(){
       <Instruction>Selecione o(s) assento(s)</Instruction>
       <Theater seats={seats}/>
       <SeatLabels />
-      <Link style={{width: "60%"}} className="d-block" to="/">
+      <Link style={{width: "60%", "margin-top": "60px"}} className="d-block" to="/">
         <NextButton>Reservar assento(s)</NextButton>
       </Link>
     </MainWrapper>
   )
 }
-
-const MainWrapper = styled.main`
-  width: calc(100% - 48px);
-  max-width: var(--hCap);
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
 
 const Instruction = styled.h2`
   font-size: min(6vw, 38px);

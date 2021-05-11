@@ -12,10 +12,11 @@ export default function Poster(props){
   );
 }
 
-
 const PosterWrapper = styled.article`
   width: calc(50% - 15px);
   max-width: 200px;
+  box-shadow: 0 2px 4px 2px rgba(0,0,0,0.1);
+  border-radius: 3px;
 `;
 
 const PosterFigure = styled.figure`

@@ -1,6 +1,7 @@
 import ReactDom from 'react-dom';
-import App from './Components/App';
-import './global_css.css';
+import App from './components/App';
+import './global_styles/global_css.css';
+import './global_styles/vel.css';
 
 const root = document.querySelector('.root');
 
