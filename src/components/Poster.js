@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 export default function Poster(props){
-  const { imgSrc, imgAlt} = props;
+  const { posterURL, title} = props;
   return (
       <PosterWrapper>
         <PosterFigure>
-          <PosterImage src={imgSrc} alt={imgAlt} />
+          <PosterImage src={posterURL} alt={title} />
         </PosterFigure>
       </PosterWrapper>
   );
