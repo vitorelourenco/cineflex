@@ -4,7 +4,7 @@ import Seat from './Seat';
 export default function Theater({seats}){
   return(
     <SeatWrapper>
-      {seats.map((seat)=><Seat text={seat.text} status={seat.status} />)}
+      {seats.map((seat ,i)=><Seat key={i} text={seat.text} status={seat.status} />)}
     </SeatWrapper>
   );
 }

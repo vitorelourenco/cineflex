@@ -1,14 +1,13 @@
 import styled from 'styled-components';
 
 export default function Poster(props){
-  const { key, imgSrc, imgAlt } = props;
-  console.log(imgSrc);
+  const { imgSrc, imgAlt} = props;
   return (
-    <PosterWrapper key={key}>
-      <PosterFigure>
-        <PosterImage src={imgSrc} alt={imgAlt} />
-      </PosterFigure>
-    </PosterWrapper>
+      <PosterWrapper>
+        <PosterFigure>
+          <PosterImage src={imgSrc} alt={imgAlt} />
+        </PosterFigure>
+      </PosterWrapper>
   );
 }
 
@@ -17,12 +16,14 @@ const PosterWrapper = styled.article`
   max-width: 200px;
   box-shadow: 0 2px 4px 2px rgba(0,0,0,0.1);
   border-radius: 3px;
+  cursor: pointer;
+  user-select: none;
 `;
 
 const PosterFigure = styled.figure`
   padding-bottom: 143%;
   position: relative;
-`
+`;
 
 const PosterImage = styled.img.attrs(props=>({
   src:props.src || "",
@@ -33,4 +34,5 @@ const PosterImage = styled.img.attrs(props=>({
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  -webkit-user-drag: none;
 `;

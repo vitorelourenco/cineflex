@@ -2,13 +2,13 @@ import styled from 'styled-components';
 
 export default function Header(){
   return (
-    <_Header>
+    <StyledHeader>
       <h1>CINEFLEX</h1>
-    </_Header>
+    </StyledHeader>
   );
 }
 
-const _Header = styled.header`
+const StyledHeader = styled.header`
   display: flex;
   width: 100%;
   max-width: 100%;
