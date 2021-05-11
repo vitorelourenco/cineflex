@@ -19,5 +19,6 @@ const SectionWrapper = styled.section`
   width: 100%;
   & > *{
     width: calc(10% - 6.3px);
+    cursor: auto;
   }
 `;

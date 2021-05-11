@@ -26,10 +26,12 @@ function getColors(status){
 }
 
 const SeatWrapper = styled.div`
+  user-select: none;
   flex-shrink: 0;
   flex-grow: 0;
   position: relative;
-  font-size: min(5vw, 30px);
+  font-size: min(4vw, 23px);
+  cursor: pointer;
   &::after{
     content: "${props=>props.afterContent}";
     position: absolute;
@@ -44,12 +46,11 @@ const Circle = styled.div`
   background-color: ${props=>props.bgColor};
   border: 1px solid ${props=>props.borderColor};
   border-radius: 40%;
-  transition: all 300ms linear;
+  transition: background-color 300ms linear, border-color 300ms linear;
 `;
 
 const Text = styled.span`
   position: absolute;
-  font-size: min(4vw, 23px);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

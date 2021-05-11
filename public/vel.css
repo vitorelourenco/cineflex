@@ -14,3 +14,15 @@ strong {
 .d-none{
   display: none;
 }
+
+.d-block{
+  display: block;
+}
+
+.d-initial{
+  display: initial;
+}
+
+.d-inline-block{
+  display: inline-block;
+}
