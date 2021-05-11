@@ -4,6 +4,7 @@ import Instruction from './Instruction';
 import Catalog from './Catalog';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import apiURL from '../ra_api';
 
 export default function Home(){
 
@@ -11,7 +12,7 @@ export default function Home(){
 
   useEffect(()=>{
     axios
-    .get("https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/movies")
+    .get(apiURL)
     .then(({data})=>{
       setPosters(data);
     })

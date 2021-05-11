@@ -2,21 +2,40 @@ import styled from 'styled-components';
 import Instruction from './Instruction';
 import MainWrapper from './MainWrapper';
 import Day from './Day';
+import { useParams } from 'react-router-dom';
+import { useState, useEffect} from 'react';
+import axios from 'axios';
+import apiURL from '../ra_api';
 
 const days = [1,2,3];
 
 export default function SessionSelection(){
+
+  const [movie, setMovie] = useState(null);
+  const idFilme = useParams().idFilme;
+
+  useEffect(()=>{
+    axios
+    .get(apiURL+idFilme+"/showtimes/")
+    .then(({data})=>{
+      setMovie(data);
+    })
+    .catch(()=>{
+      alert('Erro, tente novamente mais tarde');
+      window.location.replace("/");
+    });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <MainWrapper>
       <Instruction>Selecione o horário</Instruction>
-      <ShowTimes>
-        {days.map( day => <Day key={day.id} data={day}/>)}
-      </ShowTimes>
+      <SectionWrapper>
+        {movie && movie.days.map( day => <Day key={day.id} day={day}/>)}
+      </SectionWrapper>
     </MainWrapper>
   );
 }
 
-const ShowTimes = styled.ul`
-  list-style: none;
-
+const SectionWrapper = styled.section`
+  width: 100%;
 `;
