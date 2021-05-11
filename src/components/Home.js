@@ -12,7 +12,7 @@ export default function Home(){
 
   useEffect(()=>{
     axios
-    .get(apiURL)
+    .get(apiURL+"/movies")
     .then(({data})=>{
       setPosters(data);
     })

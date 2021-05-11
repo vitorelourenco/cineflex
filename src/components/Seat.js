@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 export default function Seat(props){
-  const {text, status, afterContent} = props;
+  const {name, status, afterContent} = props;
   const [bgColor, borderColor] = getColors(status);
 
   return (
     <SeatWrapper afterContent={afterContent ?? ""}>
       <Circle bgColor={bgColor} borderColor={borderColor}>
         <Text>
-          {text}
+          {name}
         </Text>
       </Circle>
     </SeatWrapper>

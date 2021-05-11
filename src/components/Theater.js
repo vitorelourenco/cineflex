@@ -4,7 +4,14 @@ import Seat from './Seat';
 export default function Theater({seats}){
   return(
     <SeatWrapper>
-      {seats.map((seat ,i)=><Seat key={i} text={seat.text} status={seat.status} />)}
+      {seats.map(({id, name, isAvailable}) => 
+        <Seat 
+          key={id} 
+          id={id} 
+          name={name} 
+          status={isAvailable ? "free" : "taken"} 
+        />
+      )}
     </SeatWrapper>
   );
 }

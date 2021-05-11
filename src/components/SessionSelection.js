@@ -16,7 +16,7 @@ export default function SessionSelection(){
 
   useEffect(()=>{
     axios
-    .get(apiURL+idFilme+"/showtimes/")
+    .get(apiURL+"/movies/"+idFilme+"/showtimes/")
     .then(({data})=>{
       setMovie(data);
     })

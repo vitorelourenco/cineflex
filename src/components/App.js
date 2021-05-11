@@ -15,7 +15,7 @@ export default function App(){
         <Route exact path="/sessoes/:idFilme">
           <SessionSelection />
         </Route>
-        <Route exact path="/:movieId/:sessionId">
+        <Route exact path="/assentos/:idSessao">
           <SeatSelection />
         </Route>
       </Switch>
