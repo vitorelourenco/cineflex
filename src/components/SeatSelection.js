@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import Theater from './Theater';
 import SeatLabels  from './SeatLabels';
 import { Link } from 'react-router-dom';
@@ -21,10 +20,13 @@ export default function SeatSelection({sessionState, setSessionState}){
       data.seats.forEach((seat) => {
         seat.status = seat.isAvailable === true ? "free" : "taken";
       });
-      setSessionState(data)
+      data.customerName = "banana";
+      data.customerCPF = "12345678900";
+      setSessionState(data);
     })
     .catch((err)=>{
       alert('Erro, tente novamente mais tarde');
+      console.log(err);
       window.location.replace("/");
     });
   },[]);
@@ -38,7 +40,7 @@ export default function SeatSelection({sessionState, setSessionState}){
         setSessionState={setSessionState} 
       />
       <SeatLabels />
-      <Link style={{width: "60%", marginTop: "60px"}} className="d-block" to="/">
+      <Link style={{width: "60%", marginTop: "60px"}} className="d-block" to="/sucesso">
         <NextButton>Reservar assento(s)</NextButton>
       </Link>
     </MainWrapper>

@@ -4,6 +4,7 @@ import Header from './Header';
 import SessionSelection from './SessionSelection';
 import SeatSelection from './SeatSelection';
 import { useState } from 'react';
+import Result from './Result';
 
 export default function App(){
   const [sessionState, setSessionState] = useState({});
@@ -19,7 +20,15 @@ export default function App(){
           <SessionSelection />
         </Route>
         <Route exact path="/assentos/:idSessao">
-          <SeatSelection sessionState={sessionState} setSessionState={setSessionState}/>
+          <SeatSelection 
+            sessionState={sessionState} 
+            setSessionState={setSessionState}
+          />
+        </Route>
+        <Route exact path="/sucesso">
+          <Result  
+            sessionState={sessionState} 
+          />
         </Route>
       </Switch>
     </Router>
