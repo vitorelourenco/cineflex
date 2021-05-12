@@ -7,8 +7,6 @@ import { useState, useEffect} from 'react';
 import axios from 'axios';
 import apiURL from '../ra_api';
 
-const days = [1,2,3];
-
 export default function SessionSelection(){
 
   const [movie, setMovie] = useState(null);

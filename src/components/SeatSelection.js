@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import apiURL from '../ra_api';
+import filterState from '../functions/filterState';
 
 export default function SeatSelection({sessionState, setSessionState}){
 
@@ -31,6 +32,9 @@ export default function SeatSelection({sessionState, setSessionState}){
     });
   },[]);
 
+  const [seatNumbers, ids] = filterState(sessionState);
+  const nSeats = seatNumbers.length;
+
   return (
     <MainWrapper>
       <Instruction>Selecione o(s) assento(s)</Instruction>
@@ -40,7 +44,11 @@ export default function SeatSelection({sessionState, setSessionState}){
         setSessionState={setSessionState} 
       />
       <SeatLabels />
-      <Link style={{width: "60%", marginTop: "60px"}} className="d-block" to="/sucesso">
+      <Link 
+        onClick={(e)=> nSeats>0 || (e.preventDefault() || alert('selecione um assento'))}
+        style={{width: "60%", marginTop: "60px"}} 
+        className="d-block" 
+        to="/sucesso">
         <NextButton>Reservar assento(s)</NextButton>
       </Link>
     </MainWrapper>

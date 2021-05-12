@@ -28,6 +28,7 @@ export default function App(){
         <Route exact path="/sucesso">
           <Result  
             sessionState={sessionState} 
+            setSessionState={setSessionState}
           />
         </Route>
       </Switch>

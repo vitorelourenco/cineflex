@@ -11,6 +11,10 @@ a {
   width: 100%;
 }
 
+.fw-bold {
+  font-weight: bold;
+}
+
 strong {
   font-weight: bold;
 }
