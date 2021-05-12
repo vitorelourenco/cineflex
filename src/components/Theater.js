@@ -1,16 +1,32 @@
 import styled from  'styled-components';
 import Seat from './Seat';
 
-export default function Theater({seats}){
+export default function Theater({seats , setSessionState, sessionState}){
   return(
     <SeatWrapper>
-      {seats.map(({id, name, isAvailable}) => 
-        <Seat 
-          key={id} 
-          id={id} 
-          name={name} 
-          status={isAvailable ? "free" : "taken"} 
-        />
+      {seats.map(seat => 
+        {
+          function updateSeat(){
+            if (seat.status === "taken") return;
+            if (seat.status === "free"){
+              seat.status = "selected";
+            } else {
+              seat.status = "free";
+            }
+            setSessionState({...sessionState});
+            console.log(seat.status);
+            console.log(seat);
+          }
+
+          return (
+            <Seat onClick={updateSeat}
+              key={seat.id} 
+              id={seat.id} 
+              name={seat.name}
+              status={seat.status} 
+            />
+          )
+        }
       )}
     </SeatWrapper>
   );

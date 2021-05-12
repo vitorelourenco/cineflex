@@ -1,17 +1,19 @@
 import styled from 'styled-components';
 
 export default function Seat(props){
-  const {name, status, afterContent} = props;
+  const {name, status, afterContent, onClick} = props;
   const [bgColor, borderColor] = getColors(status);
 
   return (
-    <SeatWrapper afterContent={afterContent ?? ""}>
-      <Circle bgColor={bgColor} borderColor={borderColor}>
-        <Text>
-          {name}
-        </Text>
-      </Circle>
-    </SeatWrapper>
+    <div onClick={onClick}>
+      <SeatWrapper afterContent={afterContent ?? ""}>
+        <Circle bgColor={bgColor} borderColor={borderColor}>
+          <Text>
+            {name}
+          </Text>
+        </Circle>
+      </SeatWrapper>
+    </div>
   );
 }
 
