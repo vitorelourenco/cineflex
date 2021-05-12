@@ -5,15 +5,13 @@ export default function Seat(props){
   const [bgColor, borderColor] = getColors(status);
 
   return (
-    <div onClick={onClick}>
-      <SeatWrapper afterContent={afterContent ?? ""}>
-        <Circle bgColor={bgColor} borderColor={borderColor}>
-          <Text>
-            {name}
-          </Text>
-        </Circle>
-      </SeatWrapper>
-    </div>
+    <SeatWrapper onClick={onClick} afterContent={afterContent ?? ""}>
+      <Circle bgColor={bgColor} borderColor={borderColor}>
+        <Text>
+          {name}
+        </Text>
+      </Circle>
+    </SeatWrapper>
   );
 }
 
