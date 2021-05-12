@@ -4,21 +4,25 @@ import apiURL from "../ra_api";
 import styled from "styled-components";
 import MainWrapper from "./MainWrapper";
 import NextButton from "./NextButton";
-import { Link } from "react-router-dom";
+import { Link , useLocation} from "react-router-dom";
 import filterState from "../functions/filterState";
 
 export default function Result({ sessionState, setSessionState }) {
+
+  const {buyerCPF, buyerName} = useLocation().state;
+
   const [state, setState] = useState(null);
 
   const [seatNumbers, ids] = filterState(sessionState);
-  const { customerCPF, customerName, name, day, movie } = sessionState;
-
-  const letter =
-    customerCPF && customerName && ids
-      ? { ids, cpf: customerCPF, name: customerName }
-      : {};
+  const { name, day, movie } = sessionState;
 
   useEffect(() => {
+
+    const letter =
+    buyerCPF && buyerName && ids
+      ? { ids, cpf: buyerCPF, name: buyerName }
+      : {};
+
     axios
       .post(apiURL + "/seats/book-many", letter)
       .then(() => {
@@ -36,10 +40,10 @@ export default function Result({ sessionState, setSessionState }) {
 
   return (
     <MainWrapper>
-      <Success>Pedido feito com sucesso!</Success>
+      <Success>Pedido feito<br /> com sucesso!</Success>
       <Movie time={name} day={day.date} title={movie.title}></Movie>
       <Tickets seatNumbers={seatNumbers} ids={ids}></Tickets>
-      <Buyer name={customerName} cpf={customerCPF}></Buyer>
+      <Buyer name={buyerName} cpf={buyerCPF}></Buyer>
       <Link
         onClick={() => setSessionState({})}
         style={{ width: "80%", marginTop: "20px" }}
@@ -56,8 +60,9 @@ const Success = styled.h2`
   font-weight: bold;
   font-size: min(6vw, 23px);
   margin-bottom: 35px;
-  margin-top: 35px;
+  margin-top: 25px;
   color: #245a6b;
+  text-align: center;
 `;
 
 const ArticleWrapper = styled.article`

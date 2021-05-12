@@ -18,7 +18,7 @@ export default function Home() {
       .catch((err) => {
         alert("Erro, tente novamente mais tarde");
       });
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  },[]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>

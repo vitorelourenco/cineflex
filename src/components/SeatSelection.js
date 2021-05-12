@@ -9,9 +9,13 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import apiURL from "../ra_api";
 import filterState from "../functions/filterState";
+import { useState } from 'react';
 
 export default function SeatSelection({ sessionState, setSessionState }) {
   const idSessao = useParams().idSessao;
+
+  const [buyerCPF, setBuyerCPF] = useState('a');
+  const [buyerName, setBuyerName] = useState('a');
 
   useEffect(() => {
     axios
@@ -20,8 +24,6 @@ export default function SeatSelection({ sessionState, setSessionState }) {
         data.seats.forEach((seat) => {
           seat.status = seat.isAvailable === true ? "free" : "taken";
         });
-        data.customerName = "banana";
-        data.customerCPF = "12345678900";
         setSessionState(data);
       })
       .catch((err) => {
@@ -48,7 +50,7 @@ export default function SeatSelection({ sessionState, setSessionState }) {
         }
         style={{ width: "60%", marginTop: "60px" }}
         className="d-block"
-        to="/sucesso"
+        to={{pathname:"/sucesso", state:{buyerCPF, buyerName}}}
       >
         <NextButton>Reservar assento(s)</NextButton>
       </Link>
