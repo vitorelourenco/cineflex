@@ -34,7 +34,7 @@ export default function SessionSelection() {
 
   return (
     <>
-    <MainWrapper>
+    <MainWrapper style={{marginBottom: "115px"}}>
       <Instruction>Selecione o horário</Instruction>
       <SectionWrapper>
         {movie === null
