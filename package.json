@@ -1,6 +1,6 @@
 {
   "author": "Vitor Emanuel Lourenco",
-  "description": "Simple react app that simmulates a movie tickets website",
+  "description": "Simple react app that simulates a movie tickets website",
   "name": "cineflex",
   "version": "0.1.0",
   "private": true,

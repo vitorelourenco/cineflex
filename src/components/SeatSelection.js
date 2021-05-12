@@ -27,12 +27,11 @@ export default function SeatSelection({sessionState, setSessionState}){
     })
     .catch((err)=>{
       alert('Erro, tente novamente mais tarde');
-      console.log(err);
       window.location.replace("/");
     });
   },[]);
 
-  const [seatNumbers, ids] = filterState(sessionState);
+  const [seatNumbers] = filterState(sessionState);
   const nSeats = seatNumbers.length;
 
   return (

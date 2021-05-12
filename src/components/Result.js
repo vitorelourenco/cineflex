@@ -11,8 +11,7 @@ export default function Result({sessionState ,setSessionState}){
   const [state, setState] =  useState(null);
 
   const [seatNumbers, ids] = filterState(sessionState);
-  console.log(seatNumbers);
-  const {customerCPF, customerName , name, day} = sessionState;
+  const {customerCPF, customerName , name, day, movie} = sessionState;
   
   const letter = customerCPF && customerName && ids 
     ? { ids, cpf:customerCPF , name:customerName }
@@ -33,13 +32,14 @@ export default function Result({sessionState ,setSessionState}){
 
   if (state === false) return (<h3>processing error</h3>);
   // day name time
+
   return ( 
     <MainWrapper>
       <Success>Pedido feito com sucesso!</Success>
       <Movie 
-        day={day.weekday} 
-        time={day.date} 
-        name={name}
+        time={name} 
+        day={day.date} 
+        title={movie.title}
       >
       </Movie>
       <Tickets seatNumbers={seatNumbers} ids={ids}>
@@ -81,19 +81,17 @@ const ArticleWrapper = styled.article`
   }
 `;
 
-function Movie({name,day,time}){
+function Movie({title,day,time}){
   return (
     <ArticleWrapper>
       <header>Filme e sessão</header>
-      <p>{name}</p>
+      <p>{title}</p>
       <p>{day} {time}</p>
     </ArticleWrapper>
   );
 }
 
 function Tickets({seatNumbers, ids}){
-  console.log(seatNumbers);
-  console.log(ids);
   return (
     <ArticleWrapper>
       <header>Ingressos</header>

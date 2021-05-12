@@ -17,7 +17,7 @@ export default function Home(){
       setPosters(data);
     })
     .catch(err =>{
-      console.log(err);
+      alert('Erro, tente novamente mais tarde');
     });
   })
 

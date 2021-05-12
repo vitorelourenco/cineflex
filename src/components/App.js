@@ -8,7 +8,7 @@ import Result from './Result';
 
 export default function App(){
   const [sessionState, setSessionState] = useState({});
-
+  console.log(window.location.pathname);
   return (
     <Router>
       <Header />
