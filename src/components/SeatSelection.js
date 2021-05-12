@@ -10,12 +10,13 @@ import axios from "axios";
 import apiURL from "../ra_api";
 import filterState from "../functions/filterState";
 import { useState } from 'react';
+import InputField from './InputField';
 
 export default function SeatSelection({ sessionState, setSessionState }) {
   const idSessao = useParams().idSessao;
 
-  const [buyerCPF, setBuyerCPF] = useState('a');
-  const [buyerName, setBuyerName] = useState('a');
+  const [buyerCPF, setBuyerCPF] = useState('');
+  const [buyerName, setBuyerName] = useState('');
 
   useEffect(() => {
     axios
@@ -32,28 +33,61 @@ export default function SeatSelection({ sessionState, setSessionState }) {
       });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const [seatNumbers] = filterState(sessionState);
-  const nSeats = seatNumbers.length;
+  // export default function InputField({labelText, placeholder, state, setState, id, type, name}){
 
   return (
     <MainWrapper>
+
       <Instruction>Selecione o(s) assento(s)</Instruction>
+
       <Theater
         seats={sessionState.seats || []}
         sessionState={sessionState}
         setSessionState={setSessionState}
       />
+
       <SeatLabels />
+
+      <InputField
+        labelText="Nome do comprador:"
+        placeholder="Digite seu nome..."
+        state={buyerName}
+        setState={setBuyerName}
+        id="buyerName"
+        type="text"
+        name="buyerName"
+      >
+      </InputField>
+
+      <InputField
+        labelText="CPF do comprador:"
+        placeholder="Digite seu CPF..."
+        state={buyerCPF}
+        setState={setBuyerCPF}
+        id="buyerCPF"
+        type="text"
+        name="buyerCPF"
+      >
+      </InputField>
+
       <Link
-        onClick={(e) =>
-          nSeats > 0 || e.preventDefault() || alert("selecione um assento")
-        }
+        onClick={(e)=>submit(e, sessionState, buyerName, buyerCPF)}
         style={{ width: "60%", marginTop: "60px" }}
         className="d-block"
         to={{pathname:"/sucesso", state:{buyerCPF, buyerName}}}
       >
         <NextButton>Reservar assento(s)</NextButton>
       </Link>
+
     </MainWrapper>
   );
+}
+
+function submit(e, sessionState, buyerName, buyerCPF){
+  const [seatNumbers] = filterState(sessionState);
+  const nSeats = seatNumbers.length;
+  if (nSeats === 0 || buyerName === "" || buyerCPF === ""){
+    e.preventDefault();
+    alert('Preencha os campos corretamente');
+  } ;
 }

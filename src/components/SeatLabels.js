@@ -13,7 +13,7 @@ export default function SeatLabels() {
 
 const SectionWrapper = styled.section`
   margin-top: 20px;
-  margin-bottom: 41px;
+  margin-bottom: 81px;
   display: flex;
   justify-content: space-around;
   width: 100%;
