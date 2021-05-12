@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export default function InputField({labelText, placeholder, state, setState, id, type, name}){
   return (
     <InputWrapper>
-      <label for={id}>{labelText}</label>
+      <label htmlFor={id}>{labelText}</label>
       <input 
         id={id}
         type={type} 

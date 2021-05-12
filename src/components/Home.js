@@ -26,7 +26,7 @@ export default function Home() {
         <Instruction>Selecione o filme</Instruction>
         <Catalog>
           {posters.map(({ posterURL, title, id }) => (
-            <Poster key={id} id={id} posterURL={posterURL} title={title} />
+            <Poster key={id} id={id} posterURL={posterURL} title={title} isLink={true} widthCSS={"calc(50% - 15px)"}/>
           ))}
         </Catalog>
       </MainWrapper>

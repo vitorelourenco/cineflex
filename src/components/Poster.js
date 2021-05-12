@@ -2,11 +2,11 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export default function Poster(props) {
-  const { posterURL, title, id } = props;
+  const { posterURL, title, id , widthCSS , isLink} = props;
   return (
-    <PosterWrapper>
+    <PosterWrapper widthCSS={widthCSS}>
       <PosterFigure>
-        <Link to={`/sessoes/${id}`}>
+        <Link onClick={(e) => isLink ? null : e.preventDefault()} to={`/sessoes/${id}`}>
           <PosterImage src={posterURL} alt={title} />
         </Link>
       </PosterFigure>
@@ -15,7 +15,7 @@ export default function Poster(props) {
 }
 
 const PosterWrapper = styled.article`
-  width: calc(50% - 15px);
+  width: ${props => props.widthCSS};
   max-width: 200px;
   box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.1);
   border-radius: 3px;

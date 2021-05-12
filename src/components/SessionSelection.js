@@ -6,10 +6,13 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import apiURL from "../ra_api";
+import Footer from './Footer';
 
 export default function SessionSelection() {
   const [movie, setMovie] = useState(null);
   const idFilme = useParams().idFilme;
+
+  console.log(movie);
 
   useEffect(() => {
     axios
@@ -23,7 +26,14 @@ export default function SessionSelection() {
       });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const isReady = 
+  movie
+  &&movie.posterURL
+  &&movie.title
+
+
   return (
+    <>
     <MainWrapper>
       <Instruction>Selecione o horário</Instruction>
       <SectionWrapper>
@@ -32,6 +42,14 @@ export default function SessionSelection() {
           : movie.days.map((day) => <Day key={day.id} day={day} />)}
       </SectionWrapper>
     </MainWrapper>
+    <Footer 
+      posterURL={isReady ? movie.posterURL : ""}
+      title={isReady ? movie.title : ""}
+      text1={isReady ? movie.title : ""}
+      text2={""}
+      isLink={false}
+    />
+    </>
   );
 }
 
