@@ -30,13 +30,9 @@ export default function Theater({ seats, setSessionState, sessionState }) {
 }
 
 const TheaterWrapper = styled.section`
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-row-gap: 18px;
+  grid-column-gap: 7px;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  row-gap: 18px;
-  column-gap: 7px;
-  & > * {
-    width: calc(10% - 6.3px);
-  }
 `;
