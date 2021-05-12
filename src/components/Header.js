@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export default function Header(){
+export default function Header() {
   return (
     <StyledHeader>
       <h1>CINEFLEX</h1>
@@ -15,7 +15,7 @@ const StyledHeader = styled.header`
   height: 67px;
   background-color: #c3cfd9;
   justify-content: center;
-  align-items:center;
+  align-items: center;
   font-size: 34px;
   line-height: 40px;
   color: #e8833a;

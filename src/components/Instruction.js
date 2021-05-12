@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Instruction = styled.h2`
   font-size: min(6vw, 23px);

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const MainWrapper = styled.main`
   width: calc(100% - 48px);

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const NextButton = styled.button`
   background-color: #e8833a;
@@ -15,4 +15,4 @@ const NextButton = styled.button`
   cursor: pointer;
 `;
 
-export default NextButton ;
+export default NextButton;

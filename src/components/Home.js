@@ -1,34 +1,35 @@
-import Poster from './Poster';
-import MainWrapper from './MainWrapper';
-import Instruction from './Instruction';
-import Catalog from './Catalog';
-import axios from 'axios';
-import { useState, useEffect } from 'react';
-import apiURL from '../ra_api';
+import Poster from "./Poster";
+import MainWrapper from "./MainWrapper";
+import Instruction from "./Instruction";
+import Catalog from "./Catalog";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import apiURL from "../ra_api";
 
-export default function Home(){
+export default function Home() {
+  const [posters, setPosters] = useState([]);
 
-  const [posters,setPosters] = useState([]);
-
-  useEffect(()=>{
+  useEffect(() => {
     axios
-    .get(apiURL+"/movies")
-    .then(({data})=>{
-      setPosters(data);
-    })
-    .catch(err =>{
-      alert('Erro, tente novamente mais tarde');
-    });
-  })
+      .get(apiURL + "/movies")
+      .then(({ data }) => {
+        setPosters(data);
+      })
+      .catch((err) => {
+        alert("Erro, tente novamente mais tarde");
+      });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
-    <MainWrapper>
-      <Instruction>Selecione o filme</Instruction>
-      <Catalog>
-        {posters.map(({posterURL, title, id}) => <Poster key={id} id={id} posterURL={posterURL} title={title} />)}
-      </Catalog>
-    </MainWrapper>
+      <MainWrapper>
+        <Instruction>Selecione o filme</Instruction>
+        <Catalog>
+          {posters.map(({ posterURL, title, id }) => (
+            <Poster key={id} id={id} posterURL={posterURL} title={title} />
+          ))}
+        </Catalog>
+      </MainWrapper>
     </>
   );
 }

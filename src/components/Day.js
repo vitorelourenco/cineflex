@@ -1,14 +1,20 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import NextButton from './NextButton';
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import NextButton from "./NextButton";
 
-export default function Day({day}){
-  const {id , weekday, date, showtimes} = day;
+export default function Day({ day }) {
+  const { weekday, date, showtimes } = day;
   return (
-  <SessionWrapper>
-    <SessionHeader>{weekday} - {date}</SessionHeader>
-    <SessionUL>{showtimes.map(({name, id})=><Time key={id} id={id} name={name}/>)}</SessionUL>
-  </SessionWrapper>
+    <SessionWrapper>
+      <SessionHeader>
+        {weekday} - {date}
+      </SessionHeader>
+      <SessionUL>
+        {showtimes.map(({ name, id }) => (
+          <Time key={id} id={id} name={name} />
+        ))}
+      </SessionUL>
+    </SessionWrapper>
   );
 }
 
@@ -32,10 +38,9 @@ const SessionLI = styled.li`
   width: 20%;
   max-width: 140px;
   min-width: 60px;
-
 `;
 
-function Time({name,id}){
+function Time({ name, id }) {
   return (
     <SessionLI>
       <Link className="d-block w-100" to={`/assentos/${id}`}>
