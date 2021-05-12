@@ -5,14 +5,13 @@ import { Link } from 'react-router-dom';
 import MainWrapper from './MainWrapper';
 import Instruction from './Instruction';
 import NextButton from './NextButton';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import apiURL from '../ra_api';
 
-export default function SeatSelection(){
+export default function SeatSelection({sessionState, setSessionState}){
 
-  const [sessionState, setSessionState] = useState({});
   const idSessao = useParams().idSessao;
 
   useEffect(()=>{

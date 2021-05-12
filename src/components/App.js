@@ -3,8 +3,11 @@ import Home from './Home';
 import Header from './Header';
 import SessionSelection from './SessionSelection';
 import SeatSelection from './SeatSelection';
+import { useState } from 'react';
 
 export default function App(){
+  const [sessionState, setSessionState] = useState({});
+
   return (
     <Router>
       <Header />
@@ -16,7 +19,7 @@ export default function App(){
           <SessionSelection />
         </Route>
         <Route exact path="/assentos/:idSessao">
-          <SeatSelection />
+          <SeatSelection sessionState={sessionState} setSessionState={setSessionState}/>
         </Route>
       </Switch>
     </Router>

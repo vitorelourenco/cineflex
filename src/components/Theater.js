@@ -3,7 +3,7 @@ import Seat from './Seat';
 
 export default function Theater({seats , setSessionState, sessionState}){
   return(
-    <SeatWrapper>
+    <TheaterWrapper>
       {seats.map(seat => 
         {
           function updateSeat(){
@@ -14,8 +14,6 @@ export default function Theater({seats , setSessionState, sessionState}){
               seat.status = "free";
             }
             setSessionState({...sessionState});
-            console.log(seat.status);
-            console.log(seat);
           }
 
           return (
@@ -28,11 +26,11 @@ export default function Theater({seats , setSessionState, sessionState}){
           )
         }
       )}
-    </SeatWrapper>
+    </TheaterWrapper>
   );
 }
 
-const SeatWrapper = styled.section`
+const TheaterWrapper = styled.section`
   width: 100%;
   display: flex;
   justify-content: center;

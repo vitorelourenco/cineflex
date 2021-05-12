@@ -30,7 +30,7 @@ export default function SessionSelection(){
     <MainWrapper>
       <Instruction>Selecione o horário</Instruction>
       <SectionWrapper>
-        {movie && movie.days.map( day => <Day key={day.id} day={day}/>)}
+        {movie === null ? "" : movie.days.map( day => <Day key={day.id} day={day}/>)}
       </SectionWrapper>
     </MainWrapper>
   );
