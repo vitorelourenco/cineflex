@@ -7,14 +7,13 @@ import apiURL from "../ra_api";
 import filterState from "../functions/filterState";
 import InputField from "./InputField";
 import Footer from "./Footer";
-import BackButton from './BackButton';
-import styled from 'styled-components';
-import MainWrapper from './MainWrapper';
-import Instruction from './Instruction';
-import NextButton from './NextButton';
+import BackButton from "./BackButton";
+import styled from "styled-components";
+import MainWrapper from "./MainWrapper";
+import Instruction from "./Instruction";
+import NextButton from "./NextButton";
 
-export default function SeatSelection({buyerVars}) {
-
+export default function SeatSelection({ buyerVars }) {
   const idSessao = useParams().idSessao;
 
   const [movieSession, setMovieSession] = useState({});
@@ -45,7 +44,7 @@ export default function SeatSelection({buyerVars}) {
     }
   }
 
-  const {buyerCPF, setBuyerCPF, buyerName, setBuyerName} = buyerVars;
+  const { buyerCPF, setBuyerCPF, buyerName, setBuyerName } = buyerVars;
   const [seatNumbers, ids] = filterState(movieSession);
   const { name, day, movie } = movieSession;
 
@@ -89,7 +88,7 @@ export default function SeatSelection({buyerVars}) {
           className="d-block"
           to={{
             pathname: "/sucesso",
-            state: {seatNumbers, ids, name, day, movie, },
+            state: { seatNumbers, ids, name, day, movie },
           }}
         >
           <NextButton>Reservar assento(s)</NextButton>

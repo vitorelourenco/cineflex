@@ -1,5 +1,5 @@
 import Seat from "./Seat";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export default function Theater({ seats, setMovieSession, movieSession }) {
   return (
@@ -9,7 +9,7 @@ export default function Theater({ seats, setMovieSession, movieSession }) {
           if (seat.status === "taken") {
             alert("Esse assento não está disponível");
             return;
-          };
+          }
           if (seat.status === "free") {
             seat.status = "selected";
           } else {

@@ -1,15 +1,18 @@
 import { Link } from "react-router-dom";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export default function Poster(props) {
-  const { posterURL, posterAlt, id , widthCSS , isLink} = props;
+  const { posterURL, posterAlt, id, widthCSS, isLink } = props;
   const pointerEvents = isLink ? "auto" : "none";
   const cursor = isLink ? "pointer" : "auto";
 
   return (
     <PosterWrapper widthCSS={widthCSS}>
       <PosterFigure>
-        <Link style={{pointerEvents:pointerEvents , cursor: cursor}} to={`/sessoes/${id}`}>
+        <Link
+          style={{ pointerEvents: pointerEvents, cursor: cursor }}
+          to={`/sessoes/${id}`}
+        >
           <PosterImage src={posterURL} alt={posterAlt} />
         </Link>
       </PosterFigure>
@@ -37,7 +40,7 @@ const PosterImage = styled.img.attrs((props) => ({
 `;
 
 const PosterWrapper = styled.article`
-  width: ${props => props.widthCSS};
+  width: ${(props) => props.widthCSS};
   max-width: 200px;
   box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.1);
   border-radius: 3px;

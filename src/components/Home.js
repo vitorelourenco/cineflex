@@ -2,9 +2,9 @@ import apiURL from "../ra_api";
 import axios from "axios";
 import Poster from "./Poster";
 import { useState, useEffect } from "react";
-import styled from 'styled-components';
-import MainWrapper from './MainWrapper';
-import Instruction from './Instruction';
+import styled from "styled-components";
+import MainWrapper from "./MainWrapper";
+import Instruction from "./Instruction";
 
 export default function Home() {
   const [posters, setPosters] = useState([]);
@@ -20,9 +20,9 @@ export default function Home() {
       .catch(() => {
         alert("Erro, tente novamente mais tarde");
       });
-  },[]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (!readyToRender) return (<h3>carregando...</h3>);
+  if (!readyToRender) return <h3>carregando...</h3>;
 
   return (
     <>
@@ -30,7 +30,14 @@ export default function Home() {
         <Instruction>Selecione o filme</Instruction>
         <Catalog>
           {posters.map(({ posterURL, title, id }) => (
-            <Poster key={id} id={id} posterURL={posterURL} posterAlt={title} isLink={true} widthCSS={"calc(50% - 15px)"}/>
+            <Poster
+              key={id}
+              id={id}
+              posterURL={posterURL}
+              posterAlt={title}
+              isLink={true}
+              widthCSS={"calc(50% - 15px)"}
+            />
           ))}
         </Catalog>
       </MainWrapper>

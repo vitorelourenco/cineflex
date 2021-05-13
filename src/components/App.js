@@ -7,10 +7,9 @@ import Result from "./Result";
 import { useState } from "react";
 
 export default function App() {
-  
   const [buyerCPF, setBuyerCPF] = useState("");
   const [buyerName, setBuyerName] = useState("");
-  const buyerVars = {buyerCPF,setBuyerCPF,buyerName,setBuyerName}
+  const buyerVars = { buyerCPF, setBuyerCPF, buyerName, setBuyerName };
 
   return (
     <>
@@ -19,9 +18,9 @@ export default function App() {
         <Route component={Home} exact path="/" />
         <Route component={SessionSelection} exact path="/sessoes/:idFilme" />
         <Route exact path="/assentos/:idSessao">
-          <SeatSelection buyerVars={(buyerVars)}/>
+          <SeatSelection buyerVars={buyerVars} />
         </Route>
-        <Route exact path="/sucesso" >
+        <Route exact path="/sucesso">
           <Result buyerVars={buyerVars} />
         </Route>
       </Switch>

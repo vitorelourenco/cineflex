@@ -1,22 +1,22 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import apiURL from "../ra_api";
-import { Link , useLocation} from "react-router-dom";
-import formatCPF from '../functions/formatCPF';
-import BackButton from './BackButton';
-import styled from 'styled-components';
-import MainWrapper from './MainWrapper';
-import NextButton from './NextButton';
+import { Link, useLocation } from "react-router-dom";
+import formatCPF from "../functions/formatCPF";
+import BackButton from "./BackButton";
+import styled from "styled-components";
+import MainWrapper from "./MainWrapper";
+import NextButton from "./NextButton";
 
-export default function Result({buyerVars}) {
-  const {buyerCPF, setBuyerCPF, buyerName, setBuyerName} = buyerVars;
+export default function Result({ buyerVars }) {
+  const { buyerCPF, setBuyerCPF, buyerName, setBuyerName } = buyerVars;
 
-  const {seatNumbers, ids, name, day, movie} = useLocation().state;
+  const { seatNumbers, ids, name, day, movie } = useLocation().state;
 
   const [readyToRender, setReadyToRender] = useState(false);
 
   useEffect(() => {
-    const bodyPackage = { ids, cpf: buyerCPF, name: buyerName }
+    const bodyPackage = { ids, cpf: buyerCPF, name: buyerName };
 
     axios
       .post(apiURL + "/seats/book-many/", bodyPackage)
@@ -34,12 +34,18 @@ export default function Result({buyerVars}) {
     <>
       <BackButton />
       <MainWrapper>
-        <SuccessText>Pedido feito<br /> com sucesso!</SuccessText>
+        <SuccessText>
+          Pedido feito
+          <br /> com sucesso!
+        </SuccessText>
         <Movie time={name} day={day.date} title={movie.title}></Movie>
         <Tickets seatNumbers={seatNumbers} ids={ids}></Tickets>
         <Buyer name={buyerName} cpf={buyerCPF}></Buyer>
         <Link
-          onClick={() => {setBuyerCPF(""); setBuyerName("");}}
+          onClick={() => {
+            setBuyerCPF("");
+            setBuyerName("");
+          }}
           style={{ width: "80%", marginTop: "20px" }}
           className="d-block"
           to="/"
@@ -56,7 +62,9 @@ function Movie({ title, day, time }) {
     <SuccessArticle>
       <header>Filme e sessão</header>
       <p>{title}</p>
-      <p>{day} {time}</p>
+      <p>
+        {day} {time}
+      </p>
     </SuccessArticle>
   );
 }
@@ -105,4 +113,3 @@ const SuccessArticle = styled.article`
     margin-bottom: 5px;
   }
 `;
-

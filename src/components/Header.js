@@ -1,8 +1,14 @@
 import { Link , useLocation} from 'react-router-dom';
-import askToGoHome from '../functions/askToGoHome';
 import styled from 'styled-components';
 
 export default function Header() {
+
+  function askToGoHome(e) {
+    return window.confirm("Deseja voltar para a pagina inicial?")
+      ? null
+      : e.preventDefault();
+  }
+
   const pathname = useLocation().pathname;
   const pointerEvents = pathname === "/" ? "none" : "auto";
   const touchAction = pathname === "/" ? "none" : "auto";

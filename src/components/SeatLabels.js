@@ -1,5 +1,5 @@
 import Seat from "./Seat";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export default function SeatLabels() {
   return (

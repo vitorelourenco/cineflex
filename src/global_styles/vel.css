@@ -1,10 +1,10 @@
 * {
   box-sizing: border-box;
-	color: inherit;
+  color: inherit;
 }
 
 a {
-	text-decoration: none;
+  text-decoration: none;
 }
 
 .w-100 {
@@ -19,18 +19,18 @@ strong {
   font-weight: bold;
 }
 
-.d-none{
+.d-none {
   display: none;
 }
 
-.d-block{
+.d-block {
   display: block;
 }
 
-.d-initial{
+.d-initial {
   display: initial;
 }
 
-.d-inline-block{
+.d-inline-block {
   display: inline-block;
 }

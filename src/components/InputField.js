@@ -1,16 +1,24 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export default function InputField({labelText, placeholder, state, setState, id, type, name}){
+export default function InputField({
+  labelText,
+  placeholder,
+  state,
+  setState,
+  id,
+  type,
+  name,
+}) {
   return (
     <InputWrapper>
       <label htmlFor={id}>{labelText}</label>
-      <input 
+      <input
         id={id}
-        type={type} 
-        placeholder={placeholder} 
+        type={type}
+        placeholder={placeholder}
         value={state}
         name={name}
-        onChange={(e)=>setState(e.target.value)}
+        onChange={(e) => setState(e.target.value)}
       />
     </InputWrapper>
   );
@@ -21,7 +29,7 @@ const InputWrapper = styled.div`
   margin-top: 10px;
   margin-bottom: 10px;
   width: 100%;
-  input{
+  input {
     border-radius: 3px;
     border: 1px solid #d5d5d5;
     background: white;

@@ -1,18 +1,16 @@
-import {useHistory} from 'react-router-dom';
-import NextButton from './NextButton';
-import styled from 'styled-components';
+import { useHistory } from "react-router-dom";
+import NextButton from "./NextButton";
+import styled from "styled-components";
 
-export default function BackButton(){
+export default function BackButton() {
   const history = useHistory();
-  function goBack(e){
+  function goBack(e) {
     e.stopPropagation();
     history.goBack();
   }
   return (
     <BackButtonWrapper onClick={goBack}>
-      <NextButton>
-        ←Voltar
-      </NextButton>
+      <NextButton>←Voltar</NextButton>
     </BackButtonWrapper>
   );
 }

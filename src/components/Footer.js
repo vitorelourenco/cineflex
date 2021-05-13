@@ -1,13 +1,19 @@
-import Poster from './Poster';
-import styled from 'styled-components';
+import Poster from "./Poster";
+import styled from "styled-components";
 
-export default function Footer({id, posterURL, title, text1, text2, isLink}){
+export default function Footer({ id, posterURL, title, text1, text2, isLink }) {
   return (
     <FooterWrapper>
-      <Poster id={id} posterURL={posterURL} posterAlt={title} isLink={isLink} widthCSS={"65px;"}/>
+      <Poster
+        id={id}
+        posterURL={posterURL}
+        posterAlt={title}
+        isLink={isLink}
+        widthCSS={"65px;"}
+      />
       <PGroup>
-        {!!text1 ? (<p>{text1}</p>) : ""}
-        {!!text2 ? (<p>{text2}</p>) : ""}
+        {!!text1 ? <p>{text1}</p> : ""}
+        {!!text2 ? <p>{text2}</p> : ""}
       </PGroup>
     </FooterWrapper>
   );

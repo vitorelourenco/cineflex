@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import NextButton from './NextButton';
+import NextButton from "./NextButton";
 
 export default function Day({ day }) {
   const { weekday, date, showtimes } = day;
