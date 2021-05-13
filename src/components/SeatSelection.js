@@ -44,7 +44,7 @@ export default function SeatSelection({buyerVars}) {
     const nSeats = seatNumbers.length;
     if (nSeats === 0 || buyerName === "" || buyerCPF === "") {
       e.preventDefault();
-      alert("Preencha os campos corretamente");
+      alert("Preencha os campos corretamente e selecione ao menos um assento");
     }
   }
 
