@@ -1,3 +1,5 @@
+import "./global_styles/reset.css";
+
 import ReactDom from "react-dom";
 import App from "./components/App";
 import "./global_styles/global_css.css";
