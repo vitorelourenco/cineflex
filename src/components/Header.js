@@ -1,15 +1,37 @@
 import { Link , useLocation} from 'react-router-dom';
 import askToGoHome from '../functions/askToGoHome';
-import * as S from './styledcomponents/exporter'
+import styled from 'styled-components';
 
 export default function Header() {
   const pathname = useLocation().pathname;
   const pointerEvents = pathname === "/" ? "none" : "auto";
+  const touchAction = pathname === "/" ? "none" : "auto";
   return (
-    <Link style={{pointerEvents: pointerEvents}} onClick={(e)=>askToGoHome(e)} to="/">
-      <S.HeaderWrapper>
+    <Link 
+      style={{
+        pointerEvents: pointerEvents, 
+        touchAction:touchAction
+      }} 
+      onClick={(e)=>askToGoHome(e)} 
+      to="/">
+      <HeaderWrapper>
         <h1>CINEFLEX</h1>
-      </S.HeaderWrapper>
+      </HeaderWrapper>
     </Link>
   );
 }
+
+const HeaderWrapper = styled.header`
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  height: 67px;
+  background-color: #c3cfd9;
+  justify-content: center;
+  align-items: center;
+  font-size: 34px;
+  line-height: 40px;
+  color: #e8833a;
+  user-select: none;
+  z-index: 1;
+`;

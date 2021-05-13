@@ -2,7 +2,9 @@ import apiURL from "../ra_api";
 import axios from "axios";
 import Poster from "./Poster";
 import { useState, useEffect } from "react";
-import * as S from './styledcomponents/exporter'
+import styled from 'styled-components';
+import MainWrapper from './MainWrapper';
+import Instruction from './Instruction';
 
 export default function Home() {
   const [posters, setPosters] = useState([]);
@@ -24,14 +26,23 @@ export default function Home() {
 
   return (
     <>
-      <S.MainWrapper>
-        <S.Instruction>Selecione o filme</S.Instruction>
-        <S.Catalog>
+      <MainWrapper>
+        <Instruction>Selecione o filme</Instruction>
+        <Catalog>
           {posters.map(({ posterURL, title, id }) => (
             <Poster key={id} id={id} posterURL={posterURL} posterAlt={title} isLink={true} widthCSS={"calc(50% - 15px)"}/>
           ))}
-        </S.Catalog>
-      </S.MainWrapper>
+        </Catalog>
+      </MainWrapper>
     </>
   );
 }
+
+const Catalog = styled.section`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  row-gap: 12px;
+  column-gap: 30px;
+`;

@@ -1,8 +1,8 @@
-import * as S from './styledcomponents/exporter'
+import styled from 'styled-components';
 
 export default function InputField({labelText, placeholder, state, setState, id, type, name}){
   return (
-    <S.InputWrapper>
+    <InputWrapper>
       <label htmlFor={id}>{labelText}</label>
       <input 
         id={id}
@@ -12,6 +12,23 @@ export default function InputField({labelText, placeholder, state, setState, id,
         name={name}
         onChange={(e)=>setState(e.target.value)}
       />
-    </S.InputWrapper>
+    </InputWrapper>
   );
 }
+
+const InputWrapper = styled.div`
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  input{
+    border-radius: 3px;
+    border: 1px solid #d5d5d5;
+    background: white;
+    height: 50px;
+    display: block;
+    width: 100%;
+    padding-left: 10px;
+    margin-top: 5px;
+  }
+`;

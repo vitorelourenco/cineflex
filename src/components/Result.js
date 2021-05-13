@@ -4,7 +4,9 @@ import apiURL from "../ra_api";
 import { Link , useLocation} from "react-router-dom";
 import formatCPF from '../functions/formatCPF';
 import BackButton from './BackButton';
-import * as S from './styledcomponents/exporter'
+import styled from 'styled-components';
+import MainWrapper from './MainWrapper';
+import NextButton from './NextButton';
 
 export default function Result({buyerVars}) {
   const {buyerCPF, setBuyerCPF, buyerName, setBuyerName} = buyerVars;
@@ -31,8 +33,8 @@ export default function Result({buyerVars}) {
   return (
     <>
       <BackButton />
-      <S.MainWrapper>
-        <S.SuccessText>Pedido feito<br /> com sucesso!</S.SuccessText>
+      <MainWrapper>
+        <SuccessText>Pedido feito<br /> com sucesso!</SuccessText>
         <Movie time={name} day={day.date} title={movie.title}></Movie>
         <Tickets seatNumbers={seatNumbers} ids={ids}></Tickets>
         <Buyer name={buyerName} cpf={buyerCPF}></Buyer>
@@ -42,40 +44,65 @@ export default function Result({buyerVars}) {
           className="d-block"
           to="/"
         >
-          <S.NextButton>Voltar pra Home</S.NextButton>
+          <NextButton>Voltar pra Home</NextButton>
         </Link>
-      </S.MainWrapper>
+      </MainWrapper>
     </>
   );
 }
 
 function Movie({ title, day, time }) {
   return (
-    <S.SuccessArticle>
+    <SuccessArticle>
       <header>Filme e sessão</header>
       <p>{title}</p>
       <p>{day} {time}</p>
-    </S.SuccessArticle>
+    </SuccessArticle>
   );
 }
 
 function Tickets({ seatNumbers, ids }) {
   return (
-    <S.SuccessArticle>
+    <SuccessArticle>
       <header>Ingressos</header>
       {seatNumbers.map((number, i) => {
         return <p key={ids[i]}>Assento {number}</p>;
       })}
-    </S.SuccessArticle>
+    </SuccessArticle>
   );
 }
 
 function Buyer({ name, cpf }) {
   return (
-    <S.SuccessArticle>
+    <SuccessArticle>
       <header>Comprador</header>
       <p>Nome: {name}</p>
       <p>CPF: {formatCPF(cpf)}</p>
-    </S.SuccessArticle>
+    </SuccessArticle>
   );
 }
+
+const SuccessText = styled.h2`
+  font-weight: bold;
+  font-size: min(6vw, 23px);
+  margin-bottom: 35px;
+  margin-top: 25px;
+  color: #245a6b;
+  text-align: center;
+`;
+
+const SuccessArticle = styled.article`
+  font-size: min(6vw, 23px);
+  width: 100%;
+  margin-bottom: 40px;
+  color: #293845;
+  header {
+    font-weight: bold;
+    margin-bottom: 12px;
+  }
+  p {
+    font-size: min(5.5vw, 20px);
+    margin-bottom: 5px;
+  }
+`;
+
