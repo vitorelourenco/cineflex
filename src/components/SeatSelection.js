@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import apiURL from "../ra_api";
-import filterState from "../functions/filterState";
 import InputField from "./InputField";
 import Footer from "./Footer";
 import BackButton from "./BackButton";
@@ -13,10 +12,9 @@ import MainWrapper from "./MainWrapper";
 import Instruction from "./Instruction";
 import NextButton from "./NextButton";
 
-export default function SeatSelection({ buyerVars }) {
+export default function SeatSelection({ movieSession, setMovieSession }) {
   const idSessao = useParams().idSessao;
 
-  const [movieSession, setMovieSession] = useState({});
   const [readyToRender, setReadyToRender] = useState(false);
 
   useEffect(() => {
@@ -24,6 +22,8 @@ export default function SeatSelection({ buyerVars }) {
       .get(apiURL + `/showtimes/${idSessao}/seats`)
       .then(({ data }) => {
         data.seats.forEach((seat) => {
+          seat.personName = "";
+          seat.personCPF = "";
           seat.status = seat.isAvailable === true ? "free" : "taken";
         });
         setMovieSession(data);
@@ -36,17 +36,27 @@ export default function SeatSelection({ buyerVars }) {
 
   if (!readyToRender) return <h3>carregando...</h3>;
 
-  function submit(e) {
-    const nSeats = seatNumbers.length;
-    if (nSeats === 0 || buyerName === "" || buyerCPF === "") {
-      e.preventDefault();
-      alert("Preencha os campos corretamente e selecione ao menos um assento");
-    }
+  const getObjOrder = () => {
+    const numeros = [];
+    const ids = [];
+    const compradores = [];
+
+    movieSession.seats.forEach((seat)=>{
+      if (seat.status === "selected"){
+        numeros.push(seat.name);
+        ids.push(seat.id);
+        compradores.push({idAssento: seat.id , nome: seat.personName , cpf: seat.personCPF});
+      }
+    });
+
+    const titulo = movieSession.movie.title;
+    const hora = movieSession.name;
+    const dia = movieSession.day.date;
+
+    return {numeros ,ids, compradores, titulo, hora, dia};
   }
 
-  const { buyerCPF, setBuyerCPF, buyerName, setBuyerName } = buyerVars;
-  const [seatNumbers, ids] = filterState(movieSession);
-  const { name, day, movie } = movieSession;
+  const objOrder = movieSession.hasOwnProperty("seats") ? getObjOrder() : null;
 
   return (
     <>
@@ -62,33 +72,49 @@ export default function SeatSelection({ buyerVars }) {
 
         <SeatLabels />
 
-        <InputField
-          labelText="Nome do comprador:"
-          placeholder="Digite seu nome..."
-          state={buyerName}
-          setState={setBuyerName}
-          id="buyerName"
-          type="text"
-          name="buyerName"
-        ></InputField>
+        {movieSession
+          .seats
+          .filter(seat => seat.status === "selected")
+          .map(seat => {
+            return (
+              <div className="w-100" key={seat.id}>
+                <OrderHeader>Assento {seat.name}</OrderHeader>
+                <InputField
+                  value={seat.personName}
+                  labelText="Nome do comprador:"
+                  placeholder="Digite seu nome..."
+                  state={movieSession}
+                  setState={setMovieSession}
+                  id="personName"
+                  type="text"
+                  name="personName"
+                  seat={seat}
+                  targetProp="personName"
+                ></InputField>
+      
+                <InputField
+                  value={seat.personCPF}
+                  labelText="CPF do comprador:"
+                  placeholder="Digite seu CPF..."
+                  state={movieSession}
+                  setState={setMovieSession}
+                  id="personCPF"
+                  type="text"
+                  name="personCPF"
+                  seat={seat}
+                  targetProp="personCPF"
+                ></InputField>
+              </div>
+            );
+          })}
 
-        <InputField
-          labelText="CPF do comprador:"
-          placeholder="Digite seu CPF..."
-          state={buyerCPF}
-          setState={setBuyerCPF}
-          id="buyerCPF"
-          type="text"
-          name="buyerCPF"
-        ></InputField>
 
         <Link
-          onClick={(e) => submit(e)}
           style={{ width: "60%", marginTop: "60px" }}
           className="d-block"
           to={{
             pathname: "/sucesso",
-            state: { seatNumbers, ids, name, day, movie },
+            state: objOrder,
           }}
         >
           <NextButton>Reservar assento(s)</NextButton>
@@ -105,3 +131,9 @@ export default function SeatSelection({ buyerVars }) {
     </>
   );
 }
+
+const OrderHeader = styled.h3`
+  margin-top: 20px;
+  width: 100%;
+`;
+

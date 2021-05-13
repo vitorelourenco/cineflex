@@ -3,11 +3,14 @@ import styled from "styled-components";
 export default function InputField({
   labelText,
   placeholder,
+  value,
   state,
   setState,
   id,
   type,
   name,
+  seat,
+  targetProp
 }) {
   return (
     <InputWrapper>
@@ -16,9 +19,12 @@ export default function InputField({
         id={id}
         type={type}
         placeholder={placeholder}
-        value={state}
+        value={value}
         name={name}
-        onChange={(e) => setState(e.target.value)}
+        onChange={(e) => {
+          seat[targetProp] = e.target.value;
+          setState({...state});
+        }}
       />
     </InputWrapper>
   );

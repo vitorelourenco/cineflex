@@ -8,16 +8,18 @@ import styled from "styled-components";
 import MainWrapper from "./MainWrapper";
 import NextButton from "./NextButton";
 
-export default function Result({ buyerVars }) {
-  const { buyerCPF, setBuyerCPF, buyerName, setBuyerName } = buyerVars;
+export default function Result({setMovieSession}) {
+  
+  const objOrder = useLocation().state;
 
-  const { seatNumbers, ids, name, day, movie } = useLocation().state;
+  const {ids, compradores} = objOrder;
+  const bodyPackage = {ids, compradores};
+
+  const {hora:time, dia:date, titulo:title} = objOrder;
 
   const [readyToRender, setReadyToRender] = useState(false);
 
   useEffect(() => {
-    const bodyPackage = { ids, cpf: buyerCPF, name: buyerName };
-
     axios
       .post(apiURL + "/seats/book-many/", bodyPackage)
       .then(() => {
@@ -38,13 +40,20 @@ export default function Result({ buyerVars }) {
           Pedido feito
           <br /> com sucesso!
         </SuccessText>
-        <Movie time={name} day={day.date} title={movie.title}></Movie>
-        <Tickets seatNumbers={seatNumbers} ids={ids}></Tickets>
-        <Buyer name={buyerName} cpf={buyerCPF}></Buyer>
+        <Movie time={time} day={date} title={title}></Movie>
+        {objOrder.compradores.map((buyer,i) => {
+          return (
+            <Buyer 
+              key={objOrder.ids[i]}
+              name={buyer.nome} 
+              cpf={buyer.cpf} 
+              number={objOrder.numeros[i]}>
+            </Buyer>
+          )
+        })}
         <Link
           onClick={() => {
-            setBuyerCPF("");
-            setBuyerName("");
+            setMovieSession({});
           }}
           style={{ width: "80%", marginTop: "20px" }}
           className="d-block"
@@ -69,23 +78,13 @@ function Movie({ title, day, time }) {
   );
 }
 
-function Tickets({ seatNumbers, ids }) {
-  return (
-    <SuccessArticle>
-      <header>Ingressos</header>
-      {seatNumbers.map((number, i) => {
-        return <p key={ids[i]}>Assento {number}</p>;
-      })}
-    </SuccessArticle>
-  );
-}
-
-function Buyer({ name, cpf }) {
+function Buyer({ name, cpf , number}) {
   return (
     <SuccessArticle>
       <header>Comprador</header>
       <p>Nome: {name}</p>
       <p>CPF: {formatCPF(cpf)}</p>
+      <p>Ingresso: Assento {number}</p>
     </SuccessArticle>
   );
 }
