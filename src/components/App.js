@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Header from "./Header";
 import Home from "./Home";
 import SessionSelection from "./SessionSelection";
@@ -13,7 +13,7 @@ export default function App() {
   const buyerVars = {buyerCPF,setBuyerCPF,buyerName,setBuyerName}
 
   return (
-    <Router>
+    <>
       <Header />
       <Switch>
         <Route component={Home} exact path="/" />
@@ -25,6 +25,6 @@ export default function App() {
           <Result buyerVars={buyerVars} />
         </Route>
       </Switch>
-    </Router>
+    </>
   );
 }

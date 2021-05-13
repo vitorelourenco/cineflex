@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Day from "./Day";
 import Footer from './Footer';
+import BackButton from './BackButton';
 import * as S from './styledcomponents/exporter'
 
 export default function SessionSelection() {
@@ -29,6 +30,7 @@ export default function SessionSelection() {
 
   return (
     <>
+      <BackButton />
       <S.MainWrapper style={{marginBottom: "115px"}}>
         <S.Instruction>Selecione o horário</S.Instruction>
         <section className="w-100">

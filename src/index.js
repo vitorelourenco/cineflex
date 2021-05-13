@@ -5,7 +5,15 @@ import "./global_styles/vel.css";
 
 import ReactDom from "react-dom";
 import App from "./components/App";
+import {createBrowserHistory} from 'history';
+import {BrowserRouter as Router} from 'react-router-dom';
 
+const history = createBrowserHistory();
 const root = document.querySelector(".root");
 
-ReactDom.render(<App />, root);
+ReactDom.render(
+  <Router history={history}>
+    <App />
+  </Router>,
+  root
+);

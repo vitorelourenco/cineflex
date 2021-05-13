@@ -16,3 +16,4 @@ export {default as HeaderWrapper} from './HeaderWrapper';
 export {default as TheaterWrapper} from './TheaterWrapper'
 export {default as InputWrapper} from './InputWrapper'
 export {default as PGroup} from './PGroup'
+export {default as BackButtonWrapper} from './BackButtonWrapper'

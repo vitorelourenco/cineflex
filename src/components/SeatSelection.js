@@ -7,6 +7,7 @@ import apiURL from "../ra_api";
 import filterState from "../functions/filterState";
 import InputField from "./InputField";
 import Footer from "./Footer";
+import BackButton from './BackButton';
 import * as S from './styledcomponents/exporter'
 
 export default function SeatSelection({buyerVars}) {
@@ -47,6 +48,7 @@ export default function SeatSelection({buyerVars}) {
 
   return (
     <>
+      <BackButton />
       <S.MainWrapper style={{ marginBottom: "115px" }}>
         <S.Instruction>Selecione o(s) assento(s)</S.Instruction>
 

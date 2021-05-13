@@ -12,6 +12,7 @@ const HeaderWrapper = styled.header`
   line-height: 40px;
   color: #e8833a;
   user-select: none;
+  z-index: 1;
 `;
 
 export default HeaderWrapper;

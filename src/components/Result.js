@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import apiURL from "../ra_api";
 import { Link , useLocation} from "react-router-dom";
 import formatCPF from '../functions/formatCPF';
+import BackButton from './BackButton';
 import * as S from './styledcomponents/exporter'
 
 export default function Result({buyerVars}) {
@@ -28,20 +29,23 @@ export default function Result({buyerVars}) {
   if (!readyToRender) return <h3>carregando...</h3>;
 
   return (
-    <S.MainWrapper>
-      <S.SuccessText>Pedido feito<br /> com sucesso!</S.SuccessText>
-      <Movie time={name} day={day.date} title={movie.title}></Movie>
-      <Tickets seatNumbers={seatNumbers} ids={ids}></Tickets>
-      <Buyer name={buyerName} cpf={buyerCPF}></Buyer>
-      <Link
-        onClick={() => {setBuyerCPF(""); setBuyerName("");}}
-        style={{ width: "80%", marginTop: "20px" }}
-        className="d-block"
-        to="/"
-      >
-        <S.NextButton>Voltar pra Home</S.NextButton>
-      </Link>
-    </S.MainWrapper>
+    <>
+      <BackButton />
+      <S.MainWrapper>
+        <S.SuccessText>Pedido feito<br /> com sucesso!</S.SuccessText>
+        <Movie time={name} day={day.date} title={movie.title}></Movie>
+        <Tickets seatNumbers={seatNumbers} ids={ids}></Tickets>
+        <Buyer name={buyerName} cpf={buyerCPF}></Buyer>
+        <Link
+          onClick={() => {setBuyerCPF(""); setBuyerName("");}}
+          style={{ width: "80%", marginTop: "20px" }}
+          className="d-block"
+          to="/"
+        >
+          <S.NextButton>Voltar pra Home</S.NextButton>
+        </Link>
+      </S.MainWrapper>
+    </>
   );
 }
 
