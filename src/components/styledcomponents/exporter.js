@@ -2,3 +2,17 @@ export {default as SeatWrapper} from './SeatWrapper';
 export {default as SeatCircle} from './SeatCircle';
 export {default as SeatText} from './SeatText';
 export {default as MainWrapper} from './MainWrapper';
+export {default as FooterWrapper} from './FooterWrapper';
+export {default as SeatLabelsWrapper} from './SeatLabelsWrapper';
+export {default as PosterWrapper} from './PosterWrapper';
+export {default as PosterFigure} from './PosterFigure';
+export {default as PosterImage} from './PosterImage';
+export {default as NextButton} from './NextButton';
+export {default as Instruction} from './Instruction';
+export {default as Catalog} from './Catalog';
+export {default as SuccessArticle} from './SuccessArticle';
+export {default as SuccessText} from './SuccessText';
+export {default as HeaderWrapper} from './HeaderWrapper';
+export {default as TheaterWrapper} from './TheaterWrapper'
+export {default as InputWrapper} from './InputWrapper'
+export {default as PGroup} from './PGroup'

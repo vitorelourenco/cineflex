@@ -1,9 +1,9 @@
-import styled from "styled-components";
 import Seat from "./Seat";
+import * as S from './styledcomponents/exporter'
 
 export default function Theater({ seats, setMovieSession, movieSession }) {
   return (
-    <TheaterWrapper>
+    <S.TheaterWrapper>
       {seats.map((seat) => {
         function updateSeat() {
           if (seat.status === "taken") {
@@ -22,20 +22,11 @@ export default function Theater({ seats, setMovieSession, movieSession }) {
           <Seat
             onClick={updateSeat}
             key={seat.id}
-            id={seat.id}
-            name={seat.name}
+            text={seat.name}
             status={seat.status}
           />
         );
       })}
-    </TheaterWrapper>
+    </S.TheaterWrapper>
   );
 }
-
-const TheaterWrapper = styled.section`
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-row-gap: 18px;
-  grid-column-gap: 7px;
-  width: 100%;
-`;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import NextButton from "./NextButton";
+import * as S from './styledcomponents/exporter'
 
 export default function Day({ day }) {
   const { weekday, date, showtimes } = day;
@@ -44,7 +44,7 @@ function TimeLI({ name, id }) {
   return (
     <SessionLI>
       <Link className="d-block w-100" to={`/assentos/${id}`}>
-        <NextButton>{name}</NextButton>
+        <S.NextButton>{name}</S.NextButton>
       </Link>
     </SessionLI>
   );

@@ -1,24 +1,12 @@
-import styled from "styled-components";
 import Seat from "./Seat";
+import * as S from './styledcomponents/exporter'
 
 export default function SeatLabels() {
   return (
-    <SectionWrapper>
+    <S.SeatLabelsWrapper>
       <Seat status="selected" text="" afterContent="Selecionado" />
       <Seat status="free" text="" afterContent="Disponível" />
       <Seat status="taken" text="" afterContent="Indisponível" />
-    </SectionWrapper>
+    </S.SeatLabelsWrapper>
   );
 }
-
-const SectionWrapper = styled.section`
-  margin-top: 20px;
-  margin-bottom: 81px;
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  & > * {
-    width: calc(10% - 6.3px);
-    cursor: auto;
-  }
-`;

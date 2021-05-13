@@ -1,25 +1,20 @@
 import Theater from "./Theater";
 import SeatLabels from "./SeatLabels";
-import { Link } from "react-router-dom";
-import * as S from './styledcomponents/exporter'
-import Instruction from "./Instruction";
-import NextButton from "./NextButton";
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import apiURL from "../ra_api";
 import filterState from "../functions/filterState";
-import { useState } from "react";
 import InputField from "./InputField";
 import Footer from "./Footer";
+import * as S from './styledcomponents/exporter'
 
 export default function SeatSelection({buyerVars}) {
-
-  const {buyerCPF, setBuyerCPF, buyerName, setBuyerName} = buyerVars;
 
   const idSessao = useParams().idSessao;
 
   const [movieSession, setMovieSession] = useState({});
+  const [readyToRender, setReadyToRender] = useState(false);
 
   useEffect(() => {
     axios
@@ -29,14 +24,13 @@ export default function SeatSelection({buyerVars}) {
           seat.status = seat.isAvailable === true ? "free" : "taken";
         });
         setMovieSession(data);
+        setReadyToRender(true);
       })
-      .catch((err) => {
+      .catch(() => {
         alert("Erro, tente novamente mais tarde");
-        window.location.replace("/");
       });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const readyToRender = !!Object.keys(movieSession).length;
   if (!readyToRender) return <h3>carregando...</h3>;
 
   function submit(e) {
@@ -47,13 +41,14 @@ export default function SeatSelection({buyerVars}) {
     }
   }
 
+  const {buyerCPF, setBuyerCPF, buyerName, setBuyerName} = buyerVars;
   const [seatNumbers, ids] = filterState(movieSession);
   const { name, day, movie } = movieSession;
 
   return (
     <>
       <S.MainWrapper style={{ marginBottom: "115px" }}>
-        <Instruction>Selecione o(s) assento(s)</Instruction>
+        <S.Instruction>Selecione o(s) assento(s)</S.Instruction>
 
         <Theater
           seats={movieSession.seats || []}
@@ -92,7 +87,7 @@ export default function SeatSelection({buyerVars}) {
             state: {seatNumbers, ids, name, day, movie, },
           }}
         >
-          <NextButton>Reservar assento(s)</NextButton>
+          <S.NextButton>Reservar assento(s)</S.NextButton>
         </Link>
       </S.MainWrapper>
 

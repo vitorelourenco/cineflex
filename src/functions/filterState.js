@@ -13,4 +13,3 @@ export default function filterState(state) {
   });
   return [seatNumbers, ids];
 }
-
