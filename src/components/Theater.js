@@ -6,7 +6,10 @@ export default function Theater({ seats, setMovieSession, movieSession }) {
     <TheaterWrapper>
       {seats.map((seat) => {
         function updateSeat() {
-          if (seat.status === "taken") return;
+          if (seat.status === "taken") {
+            alert("Esse assento não está disponível");
+            return;
+          };
           if (seat.status === "free") {
             seat.status = "selected";
           } else {
