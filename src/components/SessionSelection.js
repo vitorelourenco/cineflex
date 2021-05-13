@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Instruction from "./Instruction";
-import MainWrapper from "./MainWrapper";
+import * as S from './styledcomponents/exporter'
 import Day from "./Day";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -26,24 +26,23 @@ export default function SessionSelection() {
       });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const isReady = !!Object.keys(movie).length;
-
-  if (!isReady) return (<h3>carregando...</h3>);
+  const readyToRender = !!Object.keys(movie).length;
+  if (!readyToRender) return (<h3>carregando...</h3>);
 
   return (
     <>
-    <MainWrapper style={{marginBottom: "115px"}}>
-      <Instruction>Selecione o horário</Instruction>
-      <SectionWrapper>{movie.days.map((day) => <Day key={day.id} day={day} />)}
-      </SectionWrapper>
-    </MainWrapper>
-    <Footer 
-      posterURL={isReady ? movie.posterURL : ""}
-      title={isReady ? movie.title : ""}
-      text1={isReady ? movie.title : ""}
-      text2={""}
-      isLink={false}
-    />
+      <S.MainWrapper style={{marginBottom: "115px"}}>
+        <Instruction>Selecione o horário</Instruction>
+        <SectionWrapper>{movie.days.map((day) => <Day key={day.id} day={day} />)}
+        </SectionWrapper>
+      </S.MainWrapper>
+      <Footer 
+        posterURL={movie.posterURL}
+        title={movie.title}
+        text1={movie.title}
+        text2={""}
+        isLink={false}
+      />
     </>
   );
 }

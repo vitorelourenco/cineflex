@@ -1,0 +1,26 @@
+:root {
+  --hCap: 700px;
+}
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  padding-bottom: 40px;
+}
+
+.taken {
+  background-color: #fbe192;
+  border: 1px solid #f7c52b;
+}
+
+.free {
+  background-color: #c3cfd9;
+  border: 1px solid #808f90;
+}
+
+.selected {
+  background-color: #8ff7cf;
+  border: 1px solid #45bdb0;
+}

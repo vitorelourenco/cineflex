@@ -1,10 +1,10 @@
 import Poster from "./Poster";
-import MainWrapper from "./MainWrapper";
 import Instruction from "./Instruction";
 import Catalog from "./Catalog";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import apiURL from "../ra_api";
+import * as S from './styledcomponents/exporter'
 
 export default function Home() {
   const [posters, setPosters] = useState([]);
@@ -20,20 +20,20 @@ export default function Home() {
       });
   },[]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const isReady = !!Object.keys(posters).length;
+  const readyToRender = !!Object.keys(posters).length;
 
-  if (!isReady) return (<h3>carregando...</h3>);
+  if (!readyToRender) return (<h3>carregando...</h3>);
 
   return (
     <>
-      <MainWrapper>
+      <S.MainWrapper>
         <Instruction>Selecione o filme</Instruction>
         <Catalog>
           {posters.map(({ posterURL, title, id }) => (
             <Poster key={id} id={id} posterURL={posterURL} title={title} isLink={true} widthCSS={"calc(50% - 15px)"}/>
           ))}
         </Catalog>
-      </MainWrapper>
+      </S.MainWrapper>
     </>
   );
 }

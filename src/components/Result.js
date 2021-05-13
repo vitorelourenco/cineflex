@@ -2,22 +2,17 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import apiURL from "../ra_api";
 import styled from "styled-components";
-import MainWrapper from "./MainWrapper";
+import * as S from './styledcomponents/exporter'
 import NextButton from "./NextButton";
 import { Link , useLocation} from "react-router-dom";
+import formatCPF from '../functions/formatCPF';
 
 export default function Result({buyerVars}) {
   const {buyerCPF, setBuyerCPF, buyerName, setBuyerName} = buyerVars;
 
-  const {
-    seatNumbers ,
-    ids,
-    name,
-    day,
-    movie,
-  } = useLocation().state;
+  const {seatNumbers, ids, name, day, movie} = useLocation().state;
 
-  const [state, setState] = useState(null);
+  const [readyToRender, setReadyToRender] = useState(false);
 
   useEffect(() => {
 
@@ -29,20 +24,17 @@ export default function Result({buyerVars}) {
     axios
       .post(apiURL + "/seats/book-many", letter)
       .then(() => {
-        setState(true);
+        setReadyToRender(true);
       })
       .catch(() => {
-        setState(false);
+        setReadyToRender(false);
       });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (state === null) return <h3>processing order</h3>;
-
-  if (state === false) return <h3>processing error</h3>;
-  // day name time
+  if (readyToRender === false) return <h3>carregando...</h3>;
 
   return (
-    <MainWrapper>
+    <S.MainWrapper>
       <Success>Pedido feito<br /> com sucesso!</Success>
       <Movie time={name} day={day.date} title={movie.title}></Movie>
       <Tickets seatNumbers={seatNumbers} ids={ids}></Tickets>
@@ -55,7 +47,7 @@ export default function Result({buyerVars}) {
       >
         <NextButton>Voltar pra Home</NextButton>
       </Link>
-    </MainWrapper>
+    </S.MainWrapper>
   );
 }
 
@@ -88,9 +80,7 @@ function Movie({ title, day, time }) {
     <ArticleWrapper>
       <header>Filme e sessão</header>
       <p>{title}</p>
-      <p>
-        {day} {time}
-      </p>
+      <p>{day} {time}</p>
     </ArticleWrapper>
   );
 }
@@ -116,14 +106,4 @@ function Buyer({ name, cpf }) {
   );
 }
 
-function formatCPF(cpf) {
-  let clock = 0;
-  let outStr = "";
-  for (let i = 0; i < cpf.length; i++) {
-    outStr += cpf[i];
-    clock++;
-    if (clock % 9 === 0) outStr += "-";
-    else if (clock % 3 === 0) outStr += ".";
-  }
-  return outStr;
-}
+

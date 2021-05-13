@@ -1,7 +1,7 @@
 import Theater from "./Theater";
 import SeatLabels from "./SeatLabels";
 import { Link } from "react-router-dom";
-import MainWrapper from "./MainWrapper";
+import * as S from './styledcomponents/exporter'
 import Instruction from "./Instruction";
 import NextButton from "./NextButton";
 import { useEffect } from "react";
@@ -36,9 +36,8 @@ export default function SeatSelection({buyerVars}) {
       });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const isReady = !!Object.keys(movieSession).length;
-
-  if (!isReady) return <h3>carregando...</h3>;
+  const readyToRender = !!Object.keys(movieSession).length;
+  if (!readyToRender) return <h3>carregando...</h3>;
 
   function submit(e) {
     const nSeats = seatNumbers.length;
@@ -53,7 +52,7 @@ export default function SeatSelection({buyerVars}) {
 
   return (
     <>
-      <MainWrapper style={{ marginBottom: "115px" }}>
+      <S.MainWrapper style={{ marginBottom: "115px" }}>
         <Instruction>Selecione o(s) assento(s)</Instruction>
 
         <Theater
@@ -90,18 +89,12 @@ export default function SeatSelection({buyerVars}) {
           className="d-block"
           to={{
             pathname: "/sucesso",
-            state: {
-              seatNumbers,
-              ids,
-              name,
-              day,
-              movie,
-            },
+            state: {seatNumbers, ids, name, day, movie, },
           }}
         >
           <NextButton>Reservar assento(s)</NextButton>
         </Link>
-      </MainWrapper>
+      </S.MainWrapper>
 
       <Footer
         posterURL={movieSession.movie.posterURL}
