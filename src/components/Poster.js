@@ -3,10 +3,13 @@ import { Link } from "react-router-dom";
 
 export default function Poster(props) {
   const { posterURL, title, id , widthCSS , isLink} = props;
+  const pointerEvents = isLink ? "auto" : "none";
+  const cursor = isLink ? "pointer" : "auto";
+
   return (
     <PosterWrapper widthCSS={widthCSS}>
       <PosterFigure>
-        <Link onClick={(e) => isLink ? null : e.preventDefault()} to={`/sessoes/${id}`}>
+        <Link style={{pointerEvents:pointerEvents , cursor: cursor}} to={`/sessoes/${id}`}>
           <PosterImage src={posterURL} alt={title} />
         </Link>
       </PosterFigure>
@@ -19,7 +22,6 @@ const PosterWrapper = styled.article`
   max-width: 200px;
   box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.1);
   border-radius: 3px;
-  cursor: pointer;
   user-select: none;
 `;
 
