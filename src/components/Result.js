@@ -5,16 +5,19 @@ import styled from "styled-components";
 import MainWrapper from "./MainWrapper";
 import NextButton from "./NextButton";
 import { Link , useLocation} from "react-router-dom";
-import filterState from "../functions/filterState";
 
-export default function Result({ sessionState, setSessionState }) {
+export default function Result({buyerVars}) {
+  const {buyerCPF, setBuyerCPF, buyerName, setBuyerName} = buyerVars;
 
-  const {buyerCPF, buyerName} = useLocation().state;
+  const {
+    seatNumbers ,
+    ids,
+    name,
+    day,
+    movie,
+  } = useLocation().state;
 
   const [state, setState] = useState(null);
-
-  const [seatNumbers, ids] = filterState(sessionState);
-  const { name, day, movie } = sessionState;
 
   useEffect(() => {
 
@@ -45,7 +48,7 @@ export default function Result({ sessionState, setSessionState }) {
       <Tickets seatNumbers={seatNumbers} ids={ids}></Tickets>
       <Buyer name={buyerName} cpf={buyerCPF}></Buyer>
       <Link
-        onClick={() => setSessionState({})}
+        onClick={() => {setBuyerCPF(""); setBuyerName("");}}
         style={{ width: "80%", marginTop: "20px" }}
         className="d-block"
         to="/"

@@ -9,10 +9,10 @@ import apiURL from "../ra_api";
 import Footer from './Footer';
 
 export default function SessionSelection() {
-  const [movie, setMovie] = useState(null);
+
   const idFilme = useParams().idFilme;
 
-  console.log(movie);
+  const [movie, setMovie] = useState({});
 
   useEffect(() => {
     axios
@@ -26,20 +26,15 @@ export default function SessionSelection() {
       });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const isReady = 
-  movie
-  &&movie.posterURL
-  &&movie.title
+  const isReady = !!Object.keys(movie).length;
 
+  if (!isReady) return (<h3>carregando...</h3>);
 
   return (
     <>
     <MainWrapper style={{marginBottom: "115px"}}>
       <Instruction>Selecione o horário</Instruction>
-      <SectionWrapper>
-        {movie === null
-          ? ""
-          : movie.days.map((day) => <Day key={day.id} day={day} />)}
+      <SectionWrapper>{movie.days.map((day) => <Day key={day.id} day={day} />)}
       </SectionWrapper>
     </MainWrapper>
     <Footer 

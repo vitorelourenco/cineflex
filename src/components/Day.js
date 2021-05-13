@@ -11,7 +11,7 @@ export default function Day({ day }) {
       </SessionHeader>
       <SessionUL>
         {showtimes.map(({ name, id }) => (
-          <Time key={id} id={id} name={name} />
+          <TimeLI key={id} id={id} name={name} />
         ))}
       </SessionUL>
     </SessionWrapper>
@@ -40,7 +40,7 @@ const SessionLI = styled.li`
   min-width: 60px;
 `;
 
-function Time({ name, id }) {
+function TimeLI({ name, id }) {
   return (
     <SessionLI>
       <Link className="d-block w-100" to={`/assentos/${id}`}>

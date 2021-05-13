@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Seat from "./Seat";
 
-export default function Theater({ seats, setSessionState, sessionState }) {
+export default function Theater({ seats, setMovieSession, movieSession }) {
   return (
     <TheaterWrapper>
       {seats.map((seat) => {
@@ -12,7 +12,7 @@ export default function Theater({ seats, setSessionState, sessionState }) {
           } else {
             seat.status = "free";
           }
-          setSessionState({ ...sessionState });
+          setMovieSession({ ...movieSession });
         }
 
         return (

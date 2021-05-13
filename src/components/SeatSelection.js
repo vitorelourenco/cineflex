@@ -9,15 +9,17 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import apiURL from "../ra_api";
 import filterState from "../functions/filterState";
-import { useState } from 'react';
-import InputField from './InputField';
-import Footer from './Footer';
+import { useState } from "react";
+import InputField from "./InputField";
+import Footer from "./Footer";
 
-export default function SeatSelection({ sessionState, setSessionState }) {
+export default function SeatSelection({buyerVars}) {
+
+  const {buyerCPF, setBuyerCPF, buyerName, setBuyerName} = buyerVars;
+
   const idSessao = useParams().idSessao;
 
-  const [buyerCPF, setBuyerCPF] = useState('');
-  const [buyerName, setBuyerName] = useState('');
+  const [movieSession, setMovieSession] = useState({});
 
   useEffect(() => {
     axios
@@ -26,7 +28,7 @@ export default function SeatSelection({ sessionState, setSessionState }) {
         data.seats.forEach((seat) => {
           seat.status = seat.isAvailable === true ? "free" : "taken";
         });
-        setSessionState(data);
+        setMovieSession(data);
       })
       .catch((err) => {
         alert("Erro, tente novamente mais tarde");
@@ -34,25 +36,30 @@ export default function SeatSelection({ sessionState, setSessionState }) {
       });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const isReady = 
-    sessionState
-    &&sessionState.movie
-    &&sessionState.movie.posterURL
-    &&sessionState.movie.title
-    &&sessionState.day
-    &&sessionState.day.weekday
-    &&sessionState.name;
+  const isReady = !!Object.keys(movieSession).length;
+
+  if (!isReady) return <h3>carregando...</h3>;
+
+  function submit(e) {
+    const nSeats = seatNumbers.length;
+    if (nSeats === 0 || buyerName === "" || buyerCPF === "") {
+      e.preventDefault();
+      alert("Preencha os campos corretamente");
+    }
+  }
+
+  const [seatNumbers, ids] = filterState(movieSession);
+  const { name, day, movie } = movieSession;
 
   return (
     <>
-      <MainWrapper style={{marginBottom: "115px"}}>
-
+      <MainWrapper style={{ marginBottom: "115px" }}>
         <Instruction>Selecione o(s) assento(s)</Instruction>
 
         <Theater
-          seats={sessionState.seats || []}
-          sessionState={sessionState}
-          setSessionState={setSessionState}
+          seats={movieSession.seats || []}
+          movieSession={movieSession}
+          setMovieSession={setMovieSession}
         />
 
         <SeatLabels />
@@ -65,8 +72,7 @@ export default function SeatSelection({ sessionState, setSessionState }) {
           id="buyerName"
           type="text"
           name="buyerName"
-        >
-        </InputField>
+        ></InputField>
 
         <InputField
           labelText="CPF do comprador:"
@@ -76,36 +82,34 @@ export default function SeatSelection({ sessionState, setSessionState }) {
           id="buyerCPF"
           type="text"
           name="buyerCPF"
-        >
-        </InputField>
+        ></InputField>
 
         <Link
-          onClick={(e)=>submit(e, sessionState, buyerName, buyerCPF)}
+          onClick={(e) => submit(e)}
           style={{ width: "60%", marginTop: "60px" }}
           className="d-block"
-          to={{pathname:"/sucesso", state:{buyerCPF, buyerName}}}
+          to={{
+            pathname: "/sucesso",
+            state: {
+              seatNumbers,
+              ids,
+              name,
+              day,
+              movie,
+            },
+          }}
         >
           <NextButton>Reservar assento(s)</NextButton>
         </Link>
-
       </MainWrapper>
 
-      <Footer 
-        posterURL={isReady ? sessionState.movie.posterURL : ""}
-        title={isReady ? sessionState.movie.title : ""}
-        text1={isReady ? sessionState.movie.title : ""}
-        text2={isReady ? sessionState.day.weekday+" "+sessionState.name : ""}
+      <Footer
+        posterURL={movieSession.movie.posterURL}
+        title={movieSession.movie.title}
+        text1={movieSession.movie.title}
+        text2={movieSession.day.weekday + " " + movieSession.name}
         isLink={false}
       />
     </>
   );
-}
-
-function submit(e, sessionState, buyerName, buyerCPF){
-  const [seatNumbers] = filterState(sessionState);
-  const nSeats = seatNumbers.length;
-  if (nSeats === 0 || buyerName === "" || buyerCPF === ""){
-    e.preventDefault();
-    alert('Preencha os campos corretamente');
-  } ;
 }

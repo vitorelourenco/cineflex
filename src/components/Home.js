@@ -20,6 +20,10 @@ export default function Home() {
       });
   },[]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const isReady = !!Object.keys(posters).length;
+
+  if (!isReady) return (<h3>carregando...</h3>);
+
   return (
     <>
       <MainWrapper>

@@ -1,35 +1,28 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from "./Home";
 import Header from "./Header";
+import Home from "./Home";
 import SessionSelection from "./SessionSelection";
 import SeatSelection from "./SeatSelection";
-import { useState } from "react";
 import Result from "./Result";
+import { useState } from "react";
 
 export default function App() {
-  const [sessionState, setSessionState] = useState({});
+  
+  const [buyerCPF, setBuyerCPF] = useState("");
+  const [buyerName, setBuyerName] = useState("");
+  const buyerVars = {buyerCPF,setBuyerCPF,buyerName,setBuyerName}
 
   return (
     <Router>
       <Header />
       <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route exact path="/sessoes/:idFilme">
-          <SessionSelection />
-        </Route>
+        <Route component={Home} exact path="/" />
+        <Route component={SessionSelection} exact path="/sessoes/:idFilme" />
         <Route exact path="/assentos/:idSessao">
-          <SeatSelection
-            sessionState={sessionState}
-            setSessionState={setSessionState}
-          />
+          <SeatSelection buyerVars={(buyerVars)}/>
         </Route>
-        <Route exact path="/sucesso">
-          <Result
-            sessionState={sessionState}
-            setSessionState={setSessionState}
-          />
+        <Route exact path="/sucesso" >
+          <Result buyerVars={buyerVars} />
         </Route>
       </Switch>
     </Router>
