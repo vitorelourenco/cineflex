@@ -6,7 +6,6 @@ import axios from "axios";
 import apiURL from "../ra_api";
 import InputField from "./InputField";
 import Footer from "./Footer";
-import BackButton from "./BackButton";
 import styled from "styled-components";
 import MainWrapper from "./MainWrapper";
 import Instruction from "./Instruction";
@@ -111,7 +110,7 @@ export default function SeatSelection({ movieSession, setMovieSession }) {
           })}
 
         <Link
-          style={{ width: "60%", marginTop: "60px" }}
+          style={{ width: "60%" }}
           className="d-block"
           to={{
             pathname: "/sucesso",

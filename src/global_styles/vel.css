@@ -34,3 +34,7 @@ strong {
 .d-inline-block {
   display: inline-block;
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}

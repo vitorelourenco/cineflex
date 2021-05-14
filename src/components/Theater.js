@@ -10,12 +10,22 @@ export default function Theater({ seats, setMovieSession, movieSession }) {
             alert("Esse assento não está disponível");
             return;
           }
+
           if (seat.status === "free") {
             seat.status = "selected";
-          } else {
-            seat.status = "free";
+            setMovieSession({ ...movieSession });
+            return;
           }
-          setMovieSession({ ...movieSession });
+
+          if (seat.status === "selected") {
+            const shouldDeselect = window.confirm(`Quer desselecionar o assento ${seat.name} e apagar os dados?`)
+            if (shouldDeselect){
+              seat.status = "free";
+              seat.personCPF = "";
+              seat.personName = "";
+              setMovieSession({ ...movieSession });
+            }
+          }
         }
 
         return (

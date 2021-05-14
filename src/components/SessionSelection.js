@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Day from "./Day";
 import Footer from "./Footer";
-import BackButton from "./BackButton";
 import MainWrapper from "./MainWrapper";
 import Instruction from "./Instruction";
 export default function SessionSelection() {
