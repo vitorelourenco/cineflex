@@ -7,7 +7,6 @@ import Result from "./Result";
 import { useState } from "react";
 
 export default function App() {
-
   const [movieSession, setMovieSession] = useState({});
 
   return (
@@ -17,10 +16,16 @@ export default function App() {
         <Route component={Home} exact path="/" />
         <Route component={SessionSelection} exact path="/sessoes/:idFilme" />
         <Route exact path="/assentos/:idSessao">
-          <SeatSelection movieSession={movieSession} setMovieSession={setMovieSession}/>
+          <SeatSelection
+            movieSession={movieSession}
+            setMovieSession={setMovieSession}
+          />
         </Route>
         <Route exact path="/sucesso">
-          <Result movieSession={movieSession} setMovieSession={setMovieSession} />
+          <Result
+            movieSession={movieSession}
+            setMovieSession={setMovieSession}
+          />
         </Route>
       </Switch>
     </>

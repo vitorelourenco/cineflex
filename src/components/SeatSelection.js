@@ -41,11 +41,15 @@ export default function SeatSelection({ movieSession, setMovieSession }) {
     const ids = [];
     const compradores = [];
 
-    movieSession.seats.forEach((seat)=>{
-      if (seat.status === "selected"){
+    movieSession.seats.forEach((seat) => {
+      if (seat.status === "selected") {
         numeros.push(seat.name);
         ids.push(seat.id);
-        compradores.push({idAssento: seat.id , nome: seat.personName , cpf: seat.personCPF});
+        compradores.push({
+          idAssento: seat.id,
+          nome: seat.personName,
+          cpf: seat.personCPF,
+        });
       }
     });
 
@@ -53,14 +57,13 @@ export default function SeatSelection({ movieSession, setMovieSession }) {
     const hora = movieSession.name;
     const dia = movieSession.day.date;
 
-    return {numeros ,ids, compradores, titulo, hora, dia};
-  }
+    return { numeros, ids, compradores, titulo, hora, dia };
+  };
 
   const objOrder = movieSession.hasOwnProperty("seats") ? getObjOrder() : null;
 
   return (
     <>
-      <BackButton />
       <MainWrapper style={{ marginBottom: "115px" }}>
         <Instruction>Selecione o(s) assento(s)</Instruction>
 
@@ -72,10 +75,9 @@ export default function SeatSelection({ movieSession, setMovieSession }) {
 
         <SeatLabels />
 
-        {movieSession
-          .seats
-          .filter(seat => seat.status === "selected")
-          .map(seat => {
+        {movieSession.seats
+          .filter((seat) => seat.status === "selected")
+          .map((seat) => {
             return (
               <div className="w-100" key={seat.id}>
                 <OrderHeader>Assento {seat.name}</OrderHeader>
@@ -91,7 +93,7 @@ export default function SeatSelection({ movieSession, setMovieSession }) {
                   seat={seat}
                   targetProp="personName"
                 ></InputField>
-      
+
                 <InputField
                   value={seat.personCPF}
                   labelText="CPF do comprador:"
@@ -107,7 +109,6 @@ export default function SeatSelection({ movieSession, setMovieSession }) {
               </div>
             );
           })}
-
 
         <Link
           style={{ width: "60%", marginTop: "60px" }}
@@ -136,4 +137,3 @@ const OrderHeader = styled.h3`
   margin-top: 20px;
   width: 100%;
 `;
-

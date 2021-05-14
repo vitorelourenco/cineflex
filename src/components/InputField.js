@@ -10,7 +10,7 @@ export default function InputField({
   type,
   name,
   seat,
-  targetProp
+  targetProp,
 }) {
   return (
     <InputWrapper>
@@ -23,7 +23,7 @@ export default function InputField({
         name={name}
         onChange={(e) => {
           seat[targetProp] = e.target.value;
-          setState({...state});
+          setState({ ...state });
         }}
       />
     </InputWrapper>

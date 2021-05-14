@@ -8,14 +8,13 @@ import styled from "styled-components";
 import MainWrapper from "./MainWrapper";
 import NextButton from "./NextButton";
 
-export default function Result({setMovieSession}) {
-  
+export default function Result({ setMovieSession }) {
   const objOrder = useLocation().state;
 
-  const {ids, compradores} = objOrder;
-  const bodyPackage = {ids, compradores};
+  const { ids, compradores } = objOrder;
+  const bodyPackage = { ids, compradores };
 
-  const {hora:time, dia:date, titulo:title} = objOrder;
+  const { hora: time, dia: date, titulo: title } = objOrder;
 
   const [readyToRender, setReadyToRender] = useState(false);
 
@@ -41,15 +40,15 @@ export default function Result({setMovieSession}) {
           <br /> com sucesso!
         </SuccessText>
         <Movie time={time} day={date} title={title}></Movie>
-        {objOrder.compradores.map((buyer,i) => {
+        {objOrder.compradores.map((buyer, i) => {
           return (
-            <Buyer 
+            <Buyer
               key={objOrder.ids[i]}
-              name={buyer.nome} 
-              cpf={buyer.cpf} 
-              number={objOrder.numeros[i]}>
-            </Buyer>
-          )
+              name={buyer.nome}
+              cpf={buyer.cpf}
+              number={objOrder.numeros[i]}
+            ></Buyer>
+          );
         })}
         <Link
           onClick={() => {
@@ -78,7 +77,7 @@ function Movie({ title, day, time }) {
   );
 }
 
-function Buyer({ name, cpf , number}) {
+function Buyer({ name, cpf, number }) {
   return (
     <SuccessArticle>
       <header>Comprador</header>

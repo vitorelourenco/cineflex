@@ -1,8 +1,8 @@
-import { Link , useLocation} from 'react-router-dom';
-import styled from 'styled-components';
+import { Link, useLocation } from "react-router-dom";
+import styled from "styled-components";
+import BackButton from "./BackButton";
 
 export default function Header() {
-
   function askToGoHome(e) {
     return window.confirm("Deseja voltar para a pagina inicial?")
       ? null
@@ -12,18 +12,23 @@ export default function Header() {
   const pathname = useLocation().pathname;
   const pointerEvents = pathname === "/" ? "none" : "auto";
   const touchAction = pathname === "/" ? "none" : "auto";
+
   return (
-    <Link 
-      style={{
-        pointerEvents: pointerEvents, 
-        touchAction:touchAction
-      }} 
-      onClick={(e)=>askToGoHome(e)} 
-      to="/">
-      <HeaderWrapper>
-        <h1>CINEFLEX</h1>
-      </HeaderWrapper>
-    </Link>
+    <>
+      <BackButton className={pathname === "/" ? "d-none" : ""} />
+      <Link
+        style={{
+          pointerEvents: pointerEvents,
+          touchAction: touchAction,
+        }}
+        onClick={(e) => askToGoHome(e)}
+        to="/"
+      >
+        <HeaderWrapper>
+          <h1>CINEFLEX</h1>
+        </HeaderWrapper>
+      </Link>
+    </>
   );
 }
 

@@ -29,7 +29,6 @@ export default function SessionSelection() {
 
   return (
     <>
-      <BackButton />
       <MainWrapper style={{ marginBottom: "115px" }}>
         <Instruction>Selecione o horário</Instruction>
         <section className="w-100">
