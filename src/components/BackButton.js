@@ -10,11 +10,7 @@ export default function BackButton({ className }) {
   }
   return (
     <BackButtonWrapper className={className} onClick={goBack}>
-      <ArrowBackCircleOutline 
-        color="#ffffff"
-        height="30px"
-        width="30px"
-      />
+      <ArrowBackCircleOutline color="#ffffff" height="30px" width="30px" />
     </BackButtonWrapper>
   );
 }

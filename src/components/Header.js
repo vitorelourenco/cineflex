@@ -15,7 +15,11 @@ export default function Header() {
 
   return (
     <>
-      <BackButton className={pathname === "/" ? "d-none cursor-pointer" : "cursor-pointer"} />
+      <BackButton
+        className={
+          pathname === "/" ? "d-none cursor-pointer" : "cursor-pointer"
+        }
+      />
       <Link
         style={{
           pointerEvents: pointerEvents,
