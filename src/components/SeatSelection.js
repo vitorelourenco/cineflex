@@ -59,7 +59,18 @@ export default function SeatSelection({ movieSession, setMovieSession }) {
     return { numeros, ids, compradores, titulo, hora, dia };
   };
 
-  const objOrder = movieSession.hasOwnProperty("seats") ? getObjOrder() : null;
+  const objOrder = getObjOrder();
+
+  const readyToPost = (()=>{
+    const {numeros, ids, compradores, titulo, hora, dia} = objOrder
+    for(let comprador of compradores){
+      if (comprador.cpf === "" || comprador.nome === "") return false;
+    }
+    if (numeros.length === 0) return false;
+    if (ids.length === 0) return false;
+    if (!titulo || !hora || !dia) return false;
+    return true;
+  })();
 
   return (
     <>
@@ -110,6 +121,11 @@ export default function SeatSelection({ movieSession, setMovieSession }) {
           })}
 
         <Link
+          onClick={(e)=>{
+            if (readyToPost) return;
+            alert('Selecione ao menos uma cadeira \nE preencha todos os dados');
+            e.preventDefault(); 
+          }}
           style={{ width: "60%" }}
           className="d-block"
           to={{
