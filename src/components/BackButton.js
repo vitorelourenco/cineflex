@@ -1,6 +1,6 @@
 import { useHistory } from "react-router-dom";
-import NextButton from "./NextButton";
 import styled from "styled-components";
+import { ArrowBackCircleOutline } from "react-ionicons";
 
 export default function BackButton({ className }) {
   const history = useHistory();
@@ -10,7 +10,11 @@ export default function BackButton({ className }) {
   }
   return (
     <BackButtonWrapper className={className} onClick={goBack}>
-      <NextButton>←</NextButton>
+      <ArrowBackCircleOutline 
+        color="#ffffff"
+        height="30px"
+        width="30px"
+      />
     </BackButtonWrapper>
   );
 }
@@ -18,7 +22,6 @@ export default function BackButton({ className }) {
 const BackButtonWrapper = styled.aside`
   position: absolute;
   left: 4px;
-  top: 34px;
+  top: 19px;
   z-index: 10;
-  transform: translate(0, -50%);
 `;
