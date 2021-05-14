@@ -19,7 +19,7 @@ Get the ./src and ./public files from the repo however you prefer and run the fo
 - create-react-app folder_name --template @bootcamp-ra/cra-template
 - yarn add react-router-dom
 - yarn add styled-components
-- yarn add react-icons
+- yarn add react-ionicons
 
 
 ## Dependencies
