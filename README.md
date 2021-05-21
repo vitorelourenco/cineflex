@@ -11,16 +11,12 @@ Cineflex is a single-page application that simulates a Ticketmaster-like website
 
 ## Live Demo
 
-[Live Demo Link](https://cineflex-cisw0s3gt-vitorelourenco.vercel.app/)
+[Live Demo Link](https://cineflex-b434crcz1-vitorelourenco.vercel.app/)
 
 ## Instalation
 
-Get the ./src and ./public files from the repo however you prefer and run the following commands
-- create-react-app folder_name --template @bootcamp-ra/cra-template
-- yarn add react-router-dom
-- yarn add styled-components
-- yarn add react-ionicons
-
+- git clone https://github.com/vitorelourenco/cineflex.git
+- npm install
 
 ## Dependencies
 "axios": "^0.21.1"
